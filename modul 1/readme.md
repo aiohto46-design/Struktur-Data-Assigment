@@ -1,5 +1,5 @@
 # <h1 align="center">Laporan Praktikum Modul Pengenalan Bahasa C++ (1)</h1>
-<p align="center">Dwi Rahayu Putra</p>
+<p align="center">Hafidh Nuruddin Akbar</p>
 
 ## Dasar Teori
 
