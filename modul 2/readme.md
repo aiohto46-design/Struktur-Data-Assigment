@@ -148,7 +148,7 @@ Berbeda dengan pointer, reference tidak menyimpan alamat memori, tetapi menjadi 
 
 ## Unguided 
 
-### 1. SOAL
+### SOAL 1
 <img width="1750" height="144" alt="image" src="https://github.com/user-attachments/assets/008e026c-eb5f-4ad4-9b50-633ba153f013" />
 
 ### Code
@@ -216,7 +216,7 @@ Program ini memperlihatkan cara melakukan operasi dasar pada matriks 3×3 di C++
 <img width="636" height="767" alt="image" src="https://github.com/user-attachments/assets/2d5c085a-1441-433c-9b2a-bf461a8902b4" />
 
 
-### 2. SOAL
+### SOAL 2
 <img width="1781" height="135" alt="image" src="https://github.com/user-attachments/assets/05cd34aa-56b1-4cf2-8a10-27aa90a1607c" />
 
 ```c++
@@ -267,7 +267,7 @@ int main() {
 ```
 
 ### OUTPUT
-<img width="1391" height="410" alt="image" src="https://github.com/user-attachments/assets/751fd867-4d24-4898-9983-d319cdfd13e3" />
+<img width="395" height="207" alt="image" src="https://github.com/user-attachments/assets/2a5ac1a7-8ee7-4dd0-b512-aee4cb19c6de" />
 
 Program ini memperlihatkan dua konsep penting dalam C++:
 -Pointer → Mengakses dan memodifikasi data melalui alamat memori (*x, &a).
@@ -275,9 +275,9 @@ Program ini memperlihatkan dua konsep penting dalam C++:
 keduanya dapat mengubah nilai asli dari variabel yang dikirim ke fungsi, tapi reference lebih sederhana digunakan, sedangkan pointer lebih fleksibel dalam menggunakan alamat memori.
 
 ### FULL CODE SCREENSHOT
-<img width="2560" height="1600" alt="image" src="https://github.com/user-attachments/assets/66654ee9-17d7-4854-a021-b3429794a3f3" />
+<img width="560" height="754" alt="image" src="https://github.com/user-attachments/assets/ce0e68fe-edb7-44be-9a7f-eafa08d92037" />
 
-### 3. SOAL.3
+### SOAL 3
 <img width="1814" height="825" alt="image" src="https://github.com/user-attachments/assets/f17fa8a6-c1fc-4408-b9a4-9bf7d9890732" />
 
 ```C++
