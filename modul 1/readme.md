@@ -277,12 +277,12 @@ int main() {
 Code di atas digunakan untuk mengubah angka atau tipe integer menjadi string, jadi si program akan meminta input berupa int lalu program akan mengecek di bagian if else apakah sesuai dengan aturan jika iya makan angka tersebut akan diubah lalu jika angka puluhan maka akan ada tambahan berupa string yang sudah di siapkan di string satuan (buat string satuan []) dan jika angkanya melebihi kapasitas maka output yang keluar "angka melebihi kapasitas".
 
 #### Full code Screenshot:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/e27a31c1-a608-4d4d-92d8-f5b0aa638767" />
+<img width="633" height="754" alt="image" src="https://github.com/user-attachments/assets/98159768-23cd-4394-883f-6e535bbffc38" />
 
 
 ### 3. [Buat Segitiga Angka]
 
-C++
+```C++
 #include <iostream>
 using namespace std;
 
@@ -309,6 +309,7 @@ int main() {
 
     return 0;
 }
+```
 
 
 #### Output:
