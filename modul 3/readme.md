@@ -82,6 +82,7 @@ program ini merupakan file utama untuk menjalankan dan menyatukan semua program 
 
 ### 1. [Nilai Mahasiswa]
 
+### Code
 ```C++
 #include <iostream>
 using namespace std;
@@ -133,16 +134,17 @@ int main() {
 
 ```
 #### Output:
-<img width="1374" height="950" alt="image" src="https://github.com/user-attachments/assets/0e96e068-6d16-4b95-a6c1-1700040b80b3" />
+<img width="344" height="508" alt="image" src="https://github.com/user-attachments/assets/befe6e42-fc4e-41fe-b1aa-ea70114f6a66" />
 
 Program ini menyimpan data mahasiswa maximal sebanyak sepuluh orang kedalam array yang berisi nama, nim, nilai uts, uas, tugas dan nilai akhir, nilai akhir akan di hitung menggunakan rumus pada code (hitung) yang sudah di buat, jadi intinya program ini melatih penggunaan array of struct, input/output dan fungsi perhitungan sederhana untuk menghitung nilai akhir mahasiswa.
 
 #### Full code Screenshot:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/8f13324c-89d2-4754-9400-a4614d6a3f9d" />
+<img width="500" height="753" alt="image" src="https://github.com/user-attachments/assets/6e1b4a51-d338-412f-9f55-384618e8dbdc" />
 
 
 ### 2. [Nama Matkul]
 
+### Code
 ```C++
 //pelajaran.h
 #ifndef PELAJARAN_H_INCLUDED
