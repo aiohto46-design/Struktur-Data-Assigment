@@ -148,9 +148,10 @@ Berbeda dengan pointer, reference tidak menyimpan alamat memori, tetapi menjadi 
 
 ## Unguided 
 
-### 1. SOAL.1
+### 1. SOAL
 <img width="1750" height="144" alt="image" src="https://github.com/user-attachments/assets/008e026c-eb5f-4ad4-9b50-633ba153f013" />
 
+### Code
 ```C++
 #include <iostream>
 using namespace std;
@@ -205,17 +206,17 @@ int main() {
 
 ```
 #### Output:
-<img width="1448" height="835" alt="image" src="https://github.com/user-attachments/assets/ccdc0e32-01c2-4dc1-a459-35e4113bcfe8" />
+<img width="470" height="477" alt="image" src="https://github.com/user-attachments/assets/5eeeaa5c-a33a-44a7-85ae-ce8e40374c7e" />
 
 
 Program ini memperlihatkan cara melakukan operasi dasar pada matriks 3×3 di C++. menggunakan array dua dimensi untuk menyimpan data, Perulangan bersarang (for di dalam for) untuk mengakses elemen matriks, Menampilkan hasil penjumlahan, pengurangan, dan perkalian secara terpisah dengan tampilan rapi.
 
 
 #### Full code Screenshot:
-<img width="2560" height="1600" alt="image" src="https://github.com/user-attachments/assets/bbc6b530-5162-4265-96c6-f3586b9100e0" />
+<img width="636" height="767" alt="image" src="https://github.com/user-attachments/assets/2d5c085a-1441-433c-9b2a-bf461a8902b4" />
 
 
-### 2. SOAL.2
+### 2. SOAL
 <img width="1781" height="135" alt="image" src="https://github.com/user-attachments/assets/05cd34aa-56b1-4cf2-8a10-27aa90a1607c" />
 
 ```c++
