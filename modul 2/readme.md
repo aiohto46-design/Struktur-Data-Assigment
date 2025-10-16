@@ -364,9 +364,8 @@ int main() {
 ```
 
 ### OUTPUT
-<img width="1383" height="1024" alt="image" src="https://github.com/user-attachments/assets/d9174664-2662-4de4-bca6-20f9e28cf114" />
-
-<img width="1170" height="654" alt="image" src="https://github.com/user-attachments/assets/1e42bde7-442b-432c-9457-f73f0adbad7b" />
+<img width="642" height="334" alt="image" src="https://github.com/user-attachments/assets/bf61c1ac-8e05-4486-90fd-ecdbdc703e24" />
+<img width="387" height="460" alt="image" src="https://github.com/user-attachments/assets/143e2d7b-4353-43ee-ac10-434e9ee5bc5f" />
 
 
 Program ini berfungsi untuk mengolah data pada array satu dimensi — tepatnya untuk:
@@ -379,7 +378,7 @@ Program diatas juga memperlihatkan cara menggunakan fungsi dan prosedur untuk me
 Dengan menggunakan switch–case, program menjadi interaktif dan fleksibel, serta user dapat memilih apakah ingin melihat isi array, mencari nilai tertinggi, terendah, atau rata-ratanya.
 
 ### FULL CODE SCREENSHOT
-<img width="2560" height="1600" alt="image" src="https://github.com/user-attachments/assets/60e5fc9d-9f96-4db6-91e2-ad70e4479753" />
+<img width="384" height="767" alt="image" src="https://github.com/user-attachments/assets/d32bdd60-0690-49d4-b2bf-382700ccc1d6" />
 
 
 ## Kesimpulan
