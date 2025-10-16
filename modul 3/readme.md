@@ -279,12 +279,12 @@ int main() {
 }
 ```
 #### Output:
-<img width="1535" height="556" alt="image" src="https://github.com/user-attachments/assets/110493da-96bd-4402-9334-aef498fcfdbc" />
+<img width="526" height="363" alt="image" src="https://github.com/user-attachments/assets/b7ac85bd-1408-4960-8ef0-6961552c79af" />
 
 Program ini menampilkan cara menukar nilai antar elemen array 2 dimensi dan antar variabel menggunakan pointer. Fungsi tukarPosisi menukar elemen dua array di posisi tertentu, sedangkan tukarPointer menukar nilai dua variabel lewat pointer. Program ini menunjukkan penggunaan array, fungsi, dan pointer dalam C++. 
 
 #### Full code Screenshot:
-<img width="1919" height="1011" alt="image" src="https://github.com/user-attachments/assets/70c45fad-5ed0-48c6-8f3a-1e45d0ba4d3f" />
+<img width="584" height="767" alt="image" src="https://github.com/user-attachments/assets/5365b898-4602-417f-9e64-1f3714efad6c" />
 
 
 
