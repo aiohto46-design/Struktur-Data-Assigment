@@ -199,7 +199,8 @@ program ini merupakan implementasi dari struct yang bisa memuat berbagai tipe va
 
 ### 1. [Operasi Dasar]
 
-C++
+```C++
+
 #include <iostream>
 using namespace std;
 
@@ -221,6 +222,7 @@ int main(){
 
     return 0;
 }
+```
 
 #### Output:
 <img width="560" height="231" alt="image" src="https://github.com/user-attachments/assets/41b09154-86a1-4c8e-bd2a-780f585d507a" />
