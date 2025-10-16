@@ -219,6 +219,7 @@ Program ini memperlihatkan cara melakukan operasi dasar pada matriks 3×3 di C++
 ### SOAL 2
 <img width="1781" height="135" alt="image" src="https://github.com/user-attachments/assets/05cd34aa-56b1-4cf2-8a10-27aa90a1607c" />
 
+### Code
 ```c++
 #include <iostream>
 using namespace std;
@@ -280,6 +281,7 @@ keduanya dapat mengubah nilai asli dari variabel yang dikirim ke fungsi, tapi re
 ### SOAL 3
 <img width="1814" height="825" alt="image" src="https://github.com/user-attachments/assets/f17fa8a6-c1fc-4408-b9a4-9bf7d9890732" />
 
+### Code
 ```C++
 #include <iostream>
 using namespace std;
