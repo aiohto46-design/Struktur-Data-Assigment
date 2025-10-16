@@ -199,6 +199,11 @@ program ini merupakan implementasi dari struct yang bisa memuat berbagai tipe va
 
 ### 1. [Operasi Dasar]
 
+### Soal
+![WhatsApp Image 2025-10-16 at 17 01 31](https://github.com/user-attachments/assets/fc2ca82b-28a8-409b-85a2-6e29d3471f65)
+
+
+### Code
 ```C++
 
 #include <iostream>
@@ -235,6 +240,11 @@ Kode di atas merupakan kode untuk membuat bilangan bertipe float bisa melakukkan
 
 ### 2. [Mengubah Angka Menjadi String]
 
+### Soal
+![WhatsApp Image 2025-10-16 at 17 01 40](https://github.com/user-attachments/assets/5f8f2f46-4d65-4974-bc14-3b10e59a7710)
+
+
+### Code
 ```C++
 #include <iostream>
 using namespace std;
@@ -285,7 +295,7 @@ Code di atas digunakan untuk mengubah angka atau tipe integer menjadi string, ja
 ### Soal
 ![WhatsApp Image 2025-10-16 at 17 01 53](https://github.com/user-attachments/assets/daca10bf-f58d-4bb6-9931-dd8a019e9b09)
 
-
+### Code
 ```C++
 #include <iostream>
 using namespace std;
