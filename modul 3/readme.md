@@ -203,15 +203,14 @@ int main() {
 file utama untuk menjalankan program.
 
 #### Output:
-<img width="1147" height="169" alt="image" src="https://github.com/user-attachments/assets/f5f7ae41-0410-458a-beef-85ec5c75b3de" />
-
+![WhatsApp Image 2025-10-16 at 20 06 44](https://github.com/user-attachments/assets/8d5b8212-396e-49da-9a46-3a2a0770703b)
 
 Program ini menggunakan ADT (Abstract Data Type) untuk menyimpan dan menampilkan data pelajaran. Struct Pelajaran berisi nama dan kode mapel, lalu ada fungsi create_pelajaran untuk membuat data baru dan tampil_pelajaran untuk menampilkannya. Program ini menunjukkan cara memisahkan data dan fungsinya agar kode lebih rapi dan terstruktur.
 
 #### Full code Screenshot:
-<img width="1914" height="1004" alt="image" src="https://github.com/user-attachments/assets/e9562d1d-f244-4357-b7d6-c399ca5c29fd" />
-<img width="1906" height="1013" alt="image" src="https://github.com/user-attachments/assets/55c95bd3-54ad-4a7b-84ac-8708e89289c8" />
-<img width="1918" height="1055" alt="image" src="https://github.com/user-attachments/assets/3b56ec3d-7a7d-4147-90fd-739e153cebe9" />
+![WhatsApp Image 2025-10-16 at 20 07 39](https://github.com/user-attachments/assets/364dbe29-a8fb-4fc6-841f-376c2d3aed51)
+![WhatsApp Image 2025-10-16 at 20 07 24](https://github.com/user-attachments/assets/d532f425-258e-4112-af83-d672fb083fac)
+![WhatsApp Image 2025-10-16 at 20 07 05](https://github.com/user-attachments/assets/e1f825e0-26a1-43c6-bfb3-f19549be14ed)
 
 
 ### 3. [Tukar array 2D]
