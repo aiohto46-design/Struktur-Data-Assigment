@@ -282,6 +282,10 @@ Code di atas digunakan untuk mengubah angka atau tipe integer menjadi string, ja
 
 ### 3. [Buat Segitiga Angka]
 
+### Soal
+![WhatsApp Image 2025-10-16 at 17 01 53](https://github.com/user-attachments/assets/daca10bf-f58d-4bb6-9931-dd8a019e9b09)
+
+
 ```C++
 #include <iostream>
 using namespace std;
@@ -313,12 +317,12 @@ int main() {
 
 
 #### Output:
-<img width="1359" height="272" alt="image" src="https://github.com/user-attachments/assets/73b7a654-53b6-47d9-ac51-aba9c1c2be62" />
+<img width="637" height="176" alt="image" src="https://github.com/user-attachments/assets/739efa9a-e46e-478a-bfc4-758ec36a0981" />
 
 Kode ini membuat urutan angka yang berbentuk segitiga sama sisi, pengguna akan menginput variable bertipe int lalu akan masuk ke perulangan yang akan menulis ulang angka yang di inputkan dari yang terbesar sampai terkecil dengan di batasi tanda bintang setiap for memilki fungsi masing-masing untuk bisa membuat bentuk segitiga.
 
 #### Full code Screenshot:
-<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/8b954c7e-df0a-4c50-ba9c-28200fb562f2" />
+<img width="674" height="754" alt="image" src="https://github.com/user-attachments/assets/f3b56fbb-b74b-4194-8632-cad6d6b2c208" />
 
 
 ## Kesimpulan
