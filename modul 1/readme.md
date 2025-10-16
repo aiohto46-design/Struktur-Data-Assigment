@@ -230,12 +230,12 @@ int main(){
 Kode di atas merupakan kode untuk membuat bilangan bertipe float bisa melakukkan operasi dasar penjumlahan, pengurangan, perkalian dan pembagian, program akan meminta 2 inputan bertipe float lalu program akan mengeksekusi operasi dasar yang sudah di siapkan dan program akan langsung menghasil kan output hasil dari oprasi dasar tersebut.
 
 #### Full code Screenshot:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/6a045365-2bcb-4b36-9e66-c57fcde87f3d" />
+<img width="553" height="767" alt="image" src="https://github.com/user-attachments/assets/6bf418b2-a125-415a-984b-3c67cbc7f401" />
 
 
 ### 2. [Mengubah Angka Menjadi String]
 
-C++
+```C++
 #include <iostream>
 using namespace std;
 
@@ -268,6 +268,7 @@ int main() {
 
     return 0;
 }
+```
 
 #### Output:
 <img width="1377" height="303" alt="image" src="https://github.com/user-attachments/assets/e3aa73c0-670d-486c-9c64-37f1a2bd2983" />
