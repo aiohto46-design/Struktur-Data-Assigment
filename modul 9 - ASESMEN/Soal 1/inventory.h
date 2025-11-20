@@ -24,7 +24,6 @@ struct SLLList {
     address head;
 };
 
-// ADT SLL
 bool isEmpty(const SLLList &L);
 void createList(SLLList &L);
 address allocate(const Product &P);
@@ -44,5 +43,6 @@ void searchByFinalPriceRange(const SLLList &L, float minPrice, float maxPrice);
 void MaxHargaAkhir(const SLLList &L);
 
 float HargaAkhir(const Product &p);
+
 
 #endif
