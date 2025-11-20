@@ -148,7 +148,7 @@ void MaxHargaAkhir(const SLLList &L) {
         if (ha > maxVal) maxVal = ha;
         cur = cur->next;
     }
-    // tampilkan semua yang sama dengan maxVal
+    
     cur = L.head;
     int idx = 1;
     cout << fixed << setprecision(2);
@@ -159,4 +159,5 @@ void MaxHargaAkhir(const SLLList &L) {
         }
         cur = cur->next; idx++;
     }
+
 }
