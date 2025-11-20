@@ -10,3 +10,6 @@
 # SOAL 3
 
 <img width="454" height="608" alt="Screenshot 2025-11-20 110141" src="https://github.com/user-attachments/assets/c9fde2e6-6b1a-4285-b8f6-e73155f489c7" />
+
+# SOAL 4
+<img width="478" height="707" alt="Screenshot 2025-11-20 111643" src="https://github.com/user-attachments/assets/807b1ff3-2fc9-4224-8035-8a0d11840cea" />
