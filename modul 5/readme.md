@@ -433,65 +433,66 @@ int main(){
 Program main() di atas adalah program utama untuk menguji semua fungsi linked list yang sudah kamu buat di file buah.cpp.
 
 ## Unguided 
-untuk latihan soal saya menggunakan tema tempat pemancingan untuk mennetukkan harga ikan yang akan di jual
-### 1. [Listikan.h]
+untuk latihan soal saya menggunakan tema tempat sewa ps untuk mennetukkan harga ps yang akan di sewa
+### 1. [Listps.h]
 
 ```C++
-//listikan.h
-#ifndef LISTIKAN_H
-#define LISTIKAN_H
-#define Nil NULL 
+#ifndef LISTPS_H
+#define LISTPS_H
+#define Nil NULL
 
 #include <iostream>
 using namespace std;
 
-struct ikan {
-    string nama;
-    float berat;
-    int harga; 
+struct ps {
+    string tipe;
+    int durasi;
+    int harga;
 };
 
-typedef ikan infotype;
+typedef ps infotype;
 typedef struct Node *address;
 
-struct Node{
+struct Node {
     infotype info;
     address next;
 };
 
-struct List{
+struct List {
     address first;
 };
 
 void createList(List &L);
 bool isEmpty(List L);
-address alokasi(string nama, float berat, int harga);
+address alokasi(string tipe, int durasi, int harga);
 void dealokasi(address &P);
 void insertLast(List &L, address P);
 void printInfo(List L);
-address findIkan(List L, string nama);
-void updateIkan(List &L, string namaCari, float beratBaru, int hargaBaru);
-int totalHarga(List L);
+address findPS(List L, string tipe);
+void updatePS(List &L, string tipeCari, int durasiBaru, int hargaBaru);
+int totalPendapatan(List L);
 
 #endif
 ```
 
+### 2. [Listps.cpp]
+
 ```C++
-//listikan.cpp
-#include "ListIkan.h"
+#include "listps.h"
+using namespace std;
 
 void createList(List &L) {
     L.first = Nil;
 }
 
 bool isEmpty(List L) {
-    return (L.first == Nil);
+    return L.first == Nil;
 }
 
-address alokasi(string nama, float berat, int harga) {
+address alokasi(string tipe, int durasi, int harga) {
     address P = new Node;
-    P->info.nama = nama;
-    P->info.berat = berat;
+    P->info.tipe = tipe;
+    P->info.durasi = durasi;
     P->info.harga = harga;
     P->next = Nil;
     return P;
@@ -515,81 +516,78 @@ void insertLast(List &L, address P) {
 }
 
 void printInfo(List L) {
-    if (isEmpty(L)) {
-        cout << "List kosong." << endl;
-    } else {
-        address P = L.first;
-        while (P != Nil) {
-            cout << "Nama ikan : " << P->info.nama << endl;
-            cout << "Berat (kg): " << P->info.berat << endl;
-            cout << "Harga/kg  : " << P->info.harga << endl;
-            cout << "---------------------------" << endl;
-            P = P->next;
-        }
-    }
-}
-
-address findIkan(List L, string nama) {
     address P = L.first;
-    while (P != Nil && P->info.nama != nama) {
+    while (P != Nil) {
+        cout << "Tipe PS: " << P->info.tipe << endl;
+        cout << "Durasi: " << P->info.durasi << " jam" << endl;
+        cout << "Harga per jam: Rp " << P->info.harga << endl;
+        cout << "Total bayaran: Rp " << P->info.harga * P->info.durasi << endl;
+        cout << endl;
         P = P->next;
     }
-    return P;
 }
 
-void updateIkan(List &L, string namaCari, float beratBaru, int hargaBaru) {
-    address P = findIkan(L, namaCari);
+address findPS(List L, string tipe) {
+    address P = L.first;
+    while (P != Nil) {
+        if (P->info.tipe == tipe) {
+            return P;
+        }
+        P = P->next;
+    }
+    return Nil;
+}
+
+void updatePS(List &L, string tipeCari, int durasiBaru, int hargaBaru) {
+    address P = findPS(L, tipeCari);
     if (P != Nil) {
-        P->info.berat = beratBaru;
+        P->info.durasi = durasiBaru;
         P->info.harga = hargaBaru;
-        cout << "Data ikan " << namaCari << " berhasil diperbarui!" << endl;
-    } else {
-        cout << "Ikan " << namaCari << " tidak ditemukan dalam list." << endl;
     }
 }
 
-int totalHarga(List L) {
+int totalPendapatan(List L) {
     address P = L.first;
     int total = 0;
     while (P != Nil) {
-        total += (P->info.berat * P->info.harga);
+        total += P->info.harga * P->info.durasi;
         P = P->next;
     }
     return total;
 }
 ```
+## 3. [main.cpp]
 
 ```C++
-//main.cpp
-#include "ListIkan.h"
+#include "listps.h"
 
 int main() {
     List L;
     createList(L);
 
-    insertLast(L, alokasi("Lele", 2.5, 20000));
-    insertLast(L, alokasi("Gurame", 1.2, 35000));
-    insertLast(L, alokasi("Patin", 3.0, 25000));
-    insertLast(L, alokasi("Nila", 2.0, 30000));
+    insertLast(L, alokasi("PS3", 2, 8000));
+    insertLast(L, alokasi("PS4", 3, 12000));
+    insertLast(L, alokasi("PS5", 1, 15000));
+    insertLast(L, alokasi("PS2", 4, 6000));
 
-    cout << "=== Data Ikan Hasil Pancingan ===" << endl;
+    cout << "=== Data Sewa PlayStation ===" << endl;
     printInfo(L);
 
-    cout << "\nCari ikan 'Patin':" << endl;
-    address cari = findIkan(L, "Patin");
+    cout << "\nCari PS 'PS4':" << endl;
+    address cari = findPS(L, "PS4");
     if (cari != Nil)
-        cout << "Ikan ditemukan! Berat: " << cari->info.berat << " kg, Harga/kg: " << cari->info.harga << endl;
+        cout << "PS ditemukan! Durasi: " << cari->info.durasi << " jam, Harga/jam: " << cari->info.harga << endl;
     else
-        cout << "Ikan tidak ditemukan." << endl;
+        cout << "PS tidak ditemukan." << endl;
 
-    cout << "\nUpdate ikan 'Lele' jadi berat 3 kg dan harga 22000/kg" << endl;
-    updateIkan(L, "Lele", 3.0, 22000);
+    cout << "\nUpdate PS 'PS3' jadi durasi 5 jam dan harga 9000/jam" << endl;
+    updatePS(L, "PS3", 5, 9000);
 
     cout << "\n=== Data Setelah Update ===" << endl;
     printInfo(L);
 
-    int total = totalHarga(L);
-    cout << "\nTotal harga semua ikan: Rp " << total << endl;
+    int total = totalPendapatan(L);
+    cout << "\nTotal pendapatan dari semua PS: Rp " << total << endl;
 
     return 0;
 }
