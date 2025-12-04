@@ -250,7 +250,6 @@ void CreateList(List &L) {
     L.first = NULL;
 }
 
-// Alokasi node baru
 address alokasi(infotype x) {
     address P = new Elmlist;
     P-> info = x;
@@ -258,19 +257,16 @@ address alokasi(infotype x) {
     return P;
 }
 
-// Dealokasi node
 void dealokasi(address &P) {
     delete P;
     P = NULL;
 }
 
-// Insert di awal
 void insertFirst(List &L, address P) {
     P-> next = L.first;
     L.first = P;
 }
 
-// Insert setelah node tertentu
 void insertAfter(List &L, address P, address Prec) {
     if (Prec != NULL) {
         P-> next = Prec-> next;
@@ -278,7 +274,6 @@ void insertAfter(List &L, address P, address Prec) {
     }
 }
 
-// Insert di akhir
 void insertLast(List &L, address P) {
     if (L.first == NULL) {
         L.first = P;
@@ -291,7 +286,6 @@ void insertLast(List &L, address P) {
     }
 }
 
-// Print isi list
 void printInfo(List L) {
     if (L.first == NULL) {
         cout << "List kosong." << endl;
@@ -305,7 +299,6 @@ void printInfo(List L) {
     }
 }
 
-// Hapus node pertama
 void deleteFirst(List &L) {
      if (L.first != NULL) {
         address P = L.first;
@@ -314,7 +307,6 @@ void deleteFirst(List &L) {
     }
 }
 
-// // Hapus node terakhir
 void deleteLast(List &L) {
     if (L.first != NULL) {
         if (L.first->next == NULL) {
@@ -333,7 +325,6 @@ void deleteLast(List &L) {
     }
 }
 
-// Hapus setelah node tertentu
 void deleteAfter(List &L, address Prec) {
     if (Prec != NULL && Prec->next != NULL) {
         address P = Prec->next;
@@ -352,8 +343,6 @@ int nbList(List L) {
     return count;
 }
 
-
-// func untuk menghapus list
 void deleteList(List &L) {
      while (L.first != NULL) {
          deleteFirst(L);
@@ -373,7 +362,6 @@ int main() {
     address P1, P2, P3, P4, P5 = NULL;
     CreateList(L);
 
-    // Alokasi node
     P1 = alokasi(2);
     insertFirst(L, P1);
     P2 = alokasi(0);
@@ -388,12 +376,9 @@ int main() {
     cout << "Isi Linked List Awal: ";
     printInfo(L);
 
-    // Hapus node 9 (deleteFirst)
     deleteFirst(L);
-    // Hapus node 2 (deleteLast)
     deleteLast(L);
-    // Hapus node 8 (deleteAfter)
-    address Prec = L.first->next; // node setelah 12 (yaitu 8)
+    address Prec = L.first->next; 
     deleteAfter(L, Prec);
 
     cout << "Isi Linked List Setelah Delete: ";
@@ -401,7 +386,6 @@ int main() {
 
     cout << "Jumlah node: " << nbList(L) << endl;
 
-    // Hapus semua node
     deleteList(L);
     cout << "List setelah deleteList(): ";
     printInfo(L);
