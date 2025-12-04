@@ -239,8 +239,7 @@ void deleteList(List &L);
 
 #endif
 ```
-Berisi deklarasi struktur data dan prototype fungsi, seperti ElmtList, List, serta fungsi CreateList, insert, delete, nbList, dan lainnya.
-Fungsinya sebagai kerangka utama dari program agar bisa dipanggil di file lain.
+Berisi definisi node, list, dan prototype fungsi-fungsi dasar seperti create, insert, delete, dan hitung elemen. File ini jadi acuan utama agar fungsi-fungsinya bisa digunakan di file lain.
 
 ```C++
 //singlylist.cpp
