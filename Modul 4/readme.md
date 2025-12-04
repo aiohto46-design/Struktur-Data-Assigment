@@ -197,3 +197,243 @@ int main(){
 
 ```
 program ini merupakan file utama untuk menjalankan dan menyatukan semua program yang sudah di buat di atas.
+
+
+## Unguided 
+
+### 1. [Single List]
+
+```C++
+//singlylist.h
+#ifndef SINGLYLIST_H
+#define SINGLYLIST_H
+#define NIL NUL 
+
+#include <iostream>
+using namespace std;
+
+typedef int infotype;
+typedef struct Elmlist *address;
+
+struct Elmlist{ 
+    infotype info;
+    address next;
+};
+
+struct List{
+    address first;
+};
+
+void CreateList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void insertFirst(List &L, address P);
+void insertLast(List &L, address P);
+void insertAfter(List &L, address P, address Prec);
+void printInfo(List L);
+void deleteFirst(List &L);
+void deleteLast(List &L);
+void deleteAfter(List &L, address Prec);
+int nbList(List L);
+void deleteList(List &L);
+
+#endif
+```
+Berisi deklarasi struktur data dan prototype fungsi, seperti ElmtList, List, serta fungsi CreateList, insert, delete, nbList, dan lainnya.
+Fungsinya sebagai kerangka utama dari program agar bisa dipanggil di file lain.
+
+```C++
+//singlylist.cpp
+#include "singlylist.h"
+
+// Membuat list kosong
+void CreateList(List &L) {
+    L.first = NULL;
+}
+
+// Alokasi node baru
+address alokasi(infotype x) {
+    address P = new Elmlist;
+    P-> info = x;
+    P-> next = NULL;
+    return P;
+}
+
+// Dealokasi node
+void dealokasi(address &P) {
+    delete P;
+    P = NULL;
+}
+
+// Insert di awal
+void insertFirst(List &L, address P) {
+    P-> next = L.first;
+    L.first = P;
+}
+
+// Insert setelah node tertentu
+void insertAfter(List &L, address P, address Prec) {
+    if (Prec != NULL) {
+        P-> next = Prec-> next;
+        Prec-> next = P;
+    }
+}
+
+// Insert di akhir
+void insertLast(List &L, address P) {
+    if (L.first == NULL) {
+        L.first = P;
+    } else {
+        address Q = L.first;
+        while (Q-> next != NULL) {
+            Q = Q-> next;
+        }
+        Q-> next = P;
+    }
+}
+
+// Print isi list
+void printInfo(List L) {
+    if (L.first == NULL) {
+        cout << "List kosong." << endl;
+    } else {
+        address P = L.first;
+        while (P != NULL) {
+            cout << P-> info << " ";
+            P = P-> next;
+        }
+        cout << endl;
+    }
+}
+
+// Hapus node pertama
+void deleteFirst(List &L) {
+     if (L.first != NULL) {
+        address P = L.first;
+        L.first = P->next;
+           dealokasi(P);
+    }
+}
+
+// // Hapus node terakhir
+void deleteLast(List &L) {
+    if (L.first != NULL) {
+        if (L.first->next == NULL) {
+            dealokasi(L.first);
+            L.first = NULL;
+        } else {
+            address P = L.first;
+            address Prec = NULL;
+            while (P->next != NULL) {
+                Prec = P;
+                P = P->next;
+            }
+            Prec->next = NULL;
+            dealokasi(P);
+        }
+    }
+}
+
+// Hapus setelah node tertentu
+void deleteAfter(List &L, address Prec) {
+    if (Prec != NULL && Prec->next != NULL) {
+        address P = Prec->next;
+        Prec->next = P->next;
+        dealokasi(P);
+    }
+}
+
+int nbList(List L) {
+    int count = 0;
+    address P = L.first;
+    while (P != NULL) {
+        count++;
+        P = P->next;
+    }
+    return count;
+}
+
+
+// func untuk menghapus list
+void deleteList(List &L) {
+     while (L.first != NULL) {
+         deleteFirst(L);
+     }
+}
+```
+berisi semua implementasi mulai dari pembuatan list, alokasi node, operasi insert & delete, sampai menghitung jumlah node (nbList) dan menghapus semua node (deleteList).
+
+```C++
+//main.cpp
+#include "singlylist.h"
+#include <iostream>
+using namespace std;
+
+int main() {
+    List L;
+    address P1, P2, P3, P4, P5 = NULL;
+    CreateList(L);
+
+    // Alokasi node
+    P1 = alokasi(2);
+    insertFirst(L, P1);
+    P2 = alokasi(0);
+    insertFirst(L, P2);
+    P3 = alokasi(8);
+    insertFirst(L, P3);
+    P4 = alokasi(12);
+    insertFirst(L, P4);
+    P5 = alokasi(9);
+    insertFirst(L, P5);
+
+    cout << "Isi Linked List Awal: ";
+    printInfo(L);
+
+    // Hapus node 9 (deleteFirst)
+    deleteFirst(L);
+    // Hapus node 2 (deleteLast)
+    deleteLast(L);
+    // Hapus node 8 (deleteAfter)
+    address Prec = L.first->next; // node setelah 12 (yaitu 8)
+    deleteAfter(L, Prec);
+
+    cout << "Isi Linked List Setelah Delete: ";
+    printInfo(L);
+
+    cout << "Jumlah node: " << nbList(L) << endl;
+
+    // Hapus semua node
+    deleteList(L);
+    cout << "List setelah deleteList(): ";
+    printInfo(L);
+    cout << "Jumlah node: " << nbList(L) << endl;
+
+    return 0;
+}
+```
+Program menambahkan beberapa data ke list, menampilkan isi list, lalu melakukan operasi penghapusan dan menampilkan hasil akhirnya.
+
+#### Output:
+<img width="992" height="245" alt="image" src="https://github.com/user-attachments/assets/f08a2feb-9c01-499e-af45-5b8c13d8defe" />
+
+
+Program ini digunakan untuk mengelola data secara dinamis menggunakan struktur Single Linked List, di mana data dapat ditambahkan, dihapus, dan ditampilkan dengan memanfaatkan konsep pointer pada bahasa C++.
+
+#### Full code Screenshot:
+<img width="1915" height="1029" alt="image" src="https://github.com/user-attachments/assets/86a1b4a7-bdf9-4fa4-a8e4-8c10a3e0c5e5" />
+
+
+
+## Kesimpulan
+Ringkasan dan interpretasi pandangan kalia dari hasil praktikum dan pembelajaran yang didapat[1]. Pada modul ini dipelajari cara membuat, menambah, menghapus, dan menampilkan node dalam linked list menggunakan pointer.
+Kita juga belajar fungsi seperti insertFirst, insertLast, deleteFirst, deleteLast, dan nbList.
+Intinya, modul ini melatih pemahaman tentang manajemen memori dan hubungan antar data secara dinamis.
+
+## Referensi
+[1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
+
+Keluaran:
+tangkapan layar
+
+Tangkapan Layar Kode Lengkap:
+tangkapan layar
