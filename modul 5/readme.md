@@ -594,12 +594,14 @@ int main() {
 ```
 
 #### Output:
-<img width="1051" height="816" alt="image" src="https://github.com/user-attachments/assets/c9f2967d-be30-4eec-a27b-3b7a801f3814" />
+<img width="498" height="472" alt="image" src="https://github.com/user-attachments/assets/5268ca41-8742-4517-848d-2d1632f965e2" />
+<img width="354" height="389" alt="image" src="https://github.com/user-attachments/assets/c03344f5-488d-4d5e-8728-5b4e6f4cf771" />
+
 
 program ini digunakan untuk mengelola data hasil pemancingan menggunakan struktur data singly linked list, didalam program, setiap node mewakili seekor ikan yang terdiri dari nama ikan, berat dan harganya, dengan linked list, program bisa menambahkan di list tertentu, menghapus data ikan, mengupdate data ikan, mencari data ikan berdasarkan nama, alamat dan rata rata harga, menampilkan semua data ikan dan bisa menghitung jumlah data.
 
 #### Full code Screenshot:
-<img width="1916" height="993" alt="image" src="https://github.com/user-attachments/assets/2549e94c-b321-4029-b69a-3b742d129a6c" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/cab721a1-c8a0-4393-88c3-9c900ee27c70" />
 
 
 
