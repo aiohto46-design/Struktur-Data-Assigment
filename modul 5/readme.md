@@ -607,8 +607,7 @@ program ini digunakan untuk mengelola data hasil pemancingan menggunakan struktu
 
 
 ## Kesimpulan
-Ringkasan dan interpretasi pandangan kalia dari hasil praktikum dan pembelajaran yang didapat[1]. Pada modul ini dipelajari cara membuat, menambah, menghapus, menampilkan dan mencari node dalam linked list menggunakan pointer berdasarkan nama, alamat dan harga.
-Secara keseluruhan, program pemancingan ini membantu mempelajari manajemen memori dinamis, pointer, dan struktur data linked list, dalam tema pemancingan, sama seperti materi pada modul sebelumnya hanya saja pada program kali ini ada tambahan program baru yaitu serching untuk mencari data ikan sesuai nama, alamat node dan rata rata harga.
+Ringkasan dan interpretasi pandangan kalia dari hasil praktikum dan pembelajaran yang didapat[1]. Pada modul ini dipelajari cara membuat, menambah, menghapus, menampilkan, serta mencari node pada linked list menggunakan pointer dengan tema penyewaan PlayStation. Program mengelola data seperti tipe PS, durasi sewa, dan harga per jam menggunakan memori dinamis, sehingga mahasiswa dapat memahami konsep dasar pointer dan manajemen node dalam linked list. Berbeda dari modul sebelumnya, praktikum ini menambahkan fitur pencarian data PS berdasarkan tipe, alamat node, dan perhitungan total pendapatan, sehingga memberikan pemahaman lebih mendalam mengenai traversal dan pengolahan data pada struktur linked list.
 
 ## Referensi
 [1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
