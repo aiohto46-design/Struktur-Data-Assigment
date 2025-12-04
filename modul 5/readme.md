@@ -598,7 +598,7 @@ int main() {
 <img width="354" height="389" alt="image" src="https://github.com/user-attachments/assets/c03344f5-488d-4d5e-8728-5b4e6f4cf771" />
 
 
-program ini digunakan untuk mengelola data hasil pemancingan menggunakan struktur data singly linked list, didalam program, setiap node mewakili seekor ikan yang terdiri dari nama ikan, berat dan harganya, dengan linked list, program bisa menambahkan di list tertentu, menghapus data ikan, mengupdate data ikan, mencari data ikan berdasarkan nama, alamat dan rata rata harga, menampilkan semua data ikan dan bisa menghitung jumlah data.
+Program ini mengelola data hasil pemancingan menggunakan singly linked list, di mana setiap node berisi nama ikan, berat, dan harga. Dengan struktur ini, program dapat menambah, menghapus, mengupdate, mencari, menampilkan data, serta menghitung jumlah ikan, sehingga pengolahan data jadi lebih terstruktur dan efisien seperti alur program pada PS. 
 
 #### Full code Screenshot:
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/cab721a1-c8a0-4393-88c3-9c900ee27c70" />
