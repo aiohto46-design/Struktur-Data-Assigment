@@ -360,7 +360,7 @@ void deleteList(List &L) {
      }
 }
 ```
-berisi semua implementasi mulai dari pembuatan list, alokasi node, operasi insert & delete, sampai menghitung jumlah node (nbList) dan menghapus semua node (deleteList).
+Memuat seluruh implementasi, mulai dari membuat list, mengalokasikan node, melakukan operasi penyisipan dan penghapusan, hingga menghitung jumlah elemen (nbList) dan mengosongkan seluruh list (deleteList).
 
 ```C++
 //main.cpp
@@ -410,7 +410,7 @@ int main() {
     return 0;
 }
 ```
-Program menambahkan beberapa data ke list, menampilkan isi list, lalu melakukan operasi penghapusan dan menampilkan hasil akhirnya.
+Program ini memasukkan beberapa data ke dalam list, menampilkan isinya, kemudian melakukan proses penghapusan dan menunjukkan hasil list setelah diubah.
 
 #### Output:
 <img width="992" height="245" alt="image" src="https://github.com/user-attachments/assets/f08a2feb-9c01-499e-af45-5b8c13d8defe" />
