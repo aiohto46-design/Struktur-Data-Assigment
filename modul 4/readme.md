@@ -425,9 +425,7 @@ Program ini digunakan untuk mengelola data secara dinamis menggunakan struktur S
 
 
 ## Kesimpulan
-Ringkasan dan interpretasi pandangan kalia dari hasil praktikum dan pembelajaran yang didapat[1]. Pada modul ini dipelajari cara membuat, menambah, menghapus, dan menampilkan node dalam linked list menggunakan pointer.
-Kita juga belajar fungsi seperti insertFirst, insertLast, deleteFirst, deleteLast, dan nbList.
-Intinya, modul ini melatih pemahaman tentang manajemen memori dan hubungan antar data secara dinamis.
+Pada praktikum ini, kita mempelajari bagaimana membangun dan mengelola struktur linked list menggunakan pointer. Mulai dari membuat node, menambahkan node di awal atau akhir list, menghapus node, hingga menampilkan seluruh isi list. Kita juga mengenal fungsi-fungsi penting seperti insertFirst, insertLast, deleteFirst, deleteLast, dan nbList. Secara keseluruhan, modul ini membantu kita memahami cara mengatur memori serta bagaimana data saling terhubung secara dinamis dalam sebuah list.
 
 ## Referensi
 [1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
