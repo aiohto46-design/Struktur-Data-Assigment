@@ -68,9 +68,7 @@ void FindNodeByRange(linkedlist List, float hargaAwal, float hargaAkhir);
 
 #endif
 ```
-Program ini dibuat untuk mengelola data buah menggunakan struktur data linked list.
-Dengan program ini, kita bisa:
-Menyimpan data buah (nama, jumlah, harga) secara dinamis, menambah, menghapus, atau memperbarui data buah di mana saja dalam list, mencari data buah berdasarkan nama, alamat node, atau rentang harga, menampilkan semua data buah yang tersimpan dalam list.
+Program ini dibuat untuk mengelola data buah menggunakan struktur data linked list. Dengan menggunakan struktur ini, data buah seperti nama, jumlah, dan harga dapat disimpan secara dinamis. Program ini memungkinkan pengguna untuk menambah, menghapus, atau memperbarui data di posisi mana pun dalam list. Selain itu, program juga menyediakan fitur pencarian berdasarkan nama, alamat node, maupun rentang harga, serta dapat menampilkan seluruh data buah yang tersimpan.
 
 ### 2. [listbuah.cpp]
 
@@ -366,10 +364,8 @@ void FindNodeByRange(linkedlist list, float hargaAwal, float hargaAkhir) {
 }
 
 ```
-Program di atas adalah implementasi struktur data singly linked list dalam bahasa C++ untuk menyimpan data buah yang berisi:
-- nama buah (string)
-- jumlah buah (int)
-- harga buah (float)
+Program ini dirancang untuk mengelola data buah menggunakan struktur data linked list, sehingga data seperti nama, jumlah, dan harga dapat disimpan secara fleksibel. Dengan program ini, pengguna dapat menambah, menghapus, atau memperbarui data buah pada posisi mana pun dalam list. Selain itu, program juga menyediakan kemampuan untuk mencari data berdasarkan nama, alamat node, maupun rentang harga. Seluruh data buah yang tersimpan dapat ditampilkan secara lengkap melalui fitur yang disediakan.
+
 
 ### 3. [main.cpp]
 
