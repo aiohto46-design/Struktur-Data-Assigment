@@ -245,7 +245,6 @@ Berisi definisi node, list, dan prototype fungsi-fungsi dasar seperti create, in
 //singlylist.cpp
 #include "singlylist.h"
 
-// Membuat list kosong
 void CreateList(List &L) {
     L.first = NULL;
 }
@@ -403,7 +402,7 @@ Program ini memasukkan beberapa data ke dalam list, menampilkan isinya, kemudian
 Program ini berfungsi untuk mengatur data secara fleksibel melalui struktur Single Linked List, sehingga elemen dapat ditambah, dihapus, maupun ditampilkan dengan memanfaatkan penggunaan pointer dalam C++.
 
 #### Full code Screenshot:
-<img width="1915" height="1029" alt="image" src="https://github.com/user-attachments/assets/86a1b4a7-bdf9-4fa4-a8e4-8c10a3e0c5e5" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/bbbcf471-637a-42e6-9052-c9492d698903" />
 
 
 
