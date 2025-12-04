@@ -416,7 +416,7 @@ Program menambahkan beberapa data ke list, menampilkan isi list, lalu melakukan 
 <img width="992" height="245" alt="image" src="https://github.com/user-attachments/assets/f08a2feb-9c01-499e-af45-5b8c13d8defe" />
 
 
-Program ini digunakan untuk mengelola data secara dinamis menggunakan struktur Single Linked List, di mana data dapat ditambahkan, dihapus, dan ditampilkan dengan memanfaatkan konsep pointer pada bahasa C++.
+Program ini berfungsi untuk mengatur data secara fleksibel melalui struktur Single Linked List, sehingga elemen dapat ditambah, dihapus, maupun ditampilkan dengan memanfaatkan penggunaan pointer dalam C++.
 
 #### Full code Screenshot:
 <img width="1915" height="1029" alt="image" src="https://github.com/user-attachments/assets/86a1b4a7-bdf9-4fa4-a8e4-8c10a3e0c5e5" />
