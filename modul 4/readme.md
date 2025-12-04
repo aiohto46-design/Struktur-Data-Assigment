@@ -397,7 +397,7 @@ int main() {
 Program ini memasukkan beberapa data ke dalam list, menampilkan isinya, kemudian melakukan proses penghapusan dan menunjukkan hasil list setelah diubah.
 
 #### Output:
-<img width="992" height="245" alt="image" src="https://github.com/user-attachments/assets/f08a2feb-9c01-499e-af45-5b8c13d8defe" />
+<img width="457" height="175" alt="image" src="https://github.com/user-attachments/assets/6642f4f9-52e2-40f7-a1e2-83176e31d858" />
 
 
 Program ini berfungsi untuk mengatur data secara fleksibel melalui struktur Single Linked List, sehingga elemen dapat ditambah, dihapus, maupun ditampilkan dengan memanfaatkan penggunaan pointer dalam C++.
