@@ -420,14 +420,14 @@ int main() {
 #### Soal nomor 3:
 <img width="567" height="139" alt="image" src="https://github.com/user-attachments/assets/c4288e94-4a7b-49c3-bf1c-e3c4169c326d" />
 
-Program ini dibuat untuk mengimplementasikan struktur data stack menggunakan pendekatan pointer seperti pada linked list. Stack bekerja dengan prinsip LIFO (Last In First Out), sehingga data terakhir yang dimasukkan akan menjadi data pertama yang diambil.
+Program ini dirancang untuk menerapkan struktur data Stack dengan pendekatan berbasis pointer, serupa dengan konsep linked list. Mekanisme kerja stack mengikuti aturan LIFO (Last In First Out), di mana elemen yang paling akhir dimasukkan akan menjadi elemen pertama yang dikeluarkan.
 
 #### Full code Screenshot:
 <img width="389" height="598" alt="image" src="https://github.com/user-attachments/assets/3e512b65-2970-4421-b328-4bc036704737" />
 
 <img width="349" height="651" alt="image" src="https://github.com/user-attachments/assets/cf508cd7-16a0-4d1a-b110-ba35dde746fd" />
 
-<img width="453" height="124" alt="image" src="https://github.com/user-attachments/assets/9c215121-dd96-4fe1-819e-c31636ee071c" />
+<img width="481" height="551" alt="image" src="https://github.com/user-attachments/assets/1a96a355-d343-472e-8a1a-84c0d4702cee" />
 
 <img width="455" height="553" alt="image" src="https://github.com/user-attachments/assets/d29923b4-c91c-4a67-9b98-bc8f1bf4bf7d" />
 
