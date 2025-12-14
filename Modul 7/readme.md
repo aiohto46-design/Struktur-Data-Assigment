@@ -41,7 +41,7 @@ void view(stack listStack);
 void searchData(stack listStack, int data);
 #endif
 ```
-Program stack.h digunakan untuk membuat dan mengelola sebuah struktur data Stack. Stack adalah tempat penyimpanan data dengan sistem LIFO (Last In, First Out), artinya data yang terakhir dimasukkan akan menjadi data yang pertama diambil. di file ini berisi deklarasi struktur dan fungsi seperti membuat stack baru, mengecek apakah stack kosong, menambah data atau push, mengahpus data atau pop, mengubah data atau update, menampilkan isi stack dan mencari data tertentu.
+File stack.h digunakan untuk mendefinisikan dan mengelola struktur data Stack. Stack merupakan struktur data dengan konsep LIFO (Last In, First Out), yaitu elemen yang terakhir dimasukkan akan menjadi elemen pertama yang dikeluarkan. Pada file ini terdapat deklarasi struktur data serta fungsi-fungsi yang mencakup pembuatan stack, pengecekan apakah stack kosong, penambahan data (push), penghapusan data (pop), pembaruan data (update), penampilan seluruh isi stack, serta pencarian data tertentu.
 
 ### 2. [Stack.cpp]
 
@@ -164,7 +164,7 @@ void searchData(stack listStack, int data){
     }
 }
 ```
-Program ini adalah implementasi struktur data Stack dengan cara penyimpanan berantai (mirip daftar yang saling terhubung). Stack bekerja dengan aturan LIFO (Last In, First Out), artinya data yang terakhir masuk akan menjadi data pertama yang keluar.
+Program ini merupakan penerapan struktur data Stack dengan metode penyimpanan berantai (seperti linked list). Stack dijalankan berdasarkan prinsip LIFO (Last In, First Out), yaitu elemen yang terakhir ditambahkan akan menjadi elemen pertama yang dikeluarkan.
 
 ### 3. [main.cpp]
 
@@ -218,7 +218,7 @@ int main(){
     return 0;
 }
 ```
-ini main program stack yang digunakan untuk mengelola data dalam sebuah Stack dengan melakukan operasi push, pop, update, view, dan search. Program akan menunjukkan bagaimana stack berubah setelah setiap operasi.
+Program utama ini digunakan untuk mengelola data pada sebuah Stack dengan menjalankan operasi push, pop, update, view, dan search. Program ini memperlihatkan perubahan isi stack setelah setiap operasi dilakukan.
 
 ## Unguided 
 ### 1. [soalstack.h]
@@ -422,7 +422,8 @@ Program ini dibuat untuk mengimplementasikan struktur data stack menggunakan pen
 
 
 ## Kesimpulan
-Ringkasan dan interpretasi pandangan kalian dari hasil praktikum dan pembelajaran yang didapat[1]. Modul 7 pada modul ini materi yang di sampaikan itu tentang stack, Stack adalah struktur data yang bekerja dengan dengan prinsip LIFO (Last in First Out), jadi node yang terakhir masuk akan keluar paling awal, latihan ini membantu memahami cara kerja stack secara praktis, dengan mengimplementasi kan banyak operasi, jadi dapat memahami bagaimana cara stack itu digunakan untuk mengatur data yang masuk dan kelaur secara teratur serta dapat memecahkan masalah menggunakan LIFO
+
+Ringkasan dan interpretasi dari hasil praktikum serta pembelajaran pada Modul 7 menunjukkan bahwa materi yang dibahas berfokus pada struktur data Stack. Stack merupakan struktur data yang bekerja dengan prinsip LIFO (Last In, First Out), di mana elemen yang terakhir dimasukkan akan menjadi elemen pertama yang dikeluarkan. Melalui praktikum ini, pemahaman terhadap konsep dan cara kerja stack menjadi lebih jelas karena dilakukan secara langsung melalui berbagai operasi. Latihan yang diberikan membantu memahami bagaimana stack digunakan untuk mengelola alur data masuk dan keluar secara teratur, serta bagaimana konsep LIFO dapat dimanfaatkan untuk menyelesaikan berbagai permasalahan.
 
 
 
