@@ -376,38 +376,44 @@ Program ini berfungsi untuk mengelola data playlist lagu, mulai dari menambah, m
 ### 1. [doublelist.h]
 
 ```C++
-#ifndef DOUBLELIST_H
-#define DOUBLELIST_H
-#define NIL NULL
+#ifndef DOUBLYLIST_H
+#define DOUBLYLIST_H
+
 #include <iostream>
+#include <string>
 using namespace std;
+
+#define NIL NULL
 
 struct kendaraan {
     string nopol;
     string warna;
-    int tahunbuat;
+    int thnBuat;
 };
 
 typedef kendaraan infotype;
-typedef struct ElmtList *address;
+typedef struct Node *address;
 
-struct ElmtList {
+struct Node {
     infotype info;
     address next;
     address prev;
 };
 
 struct List {
-    address first;
-    address last;
+    address First;
+    address Last;
 };
 
-void CreateList(List &L);
-address alokasi(infotype x);
+void createList(List &L);
+address alokasi(infotype data);
 void dealokasi(address &P);
+
 void insertLast(List &L, address P);
 void printInfo(List L);
+
 address findElm(List L, string nopol);
+
 void deleteFirst(List &L);
 void deleteLast(List &L);
 void deleteAfter(List &L, address Prec);
@@ -416,16 +422,16 @@ void deleteAfter(List &L, address Prec);
 ```
 ### 2. [doublelist.cpp]
 ```C++
-#include "doublelist.h"
+#include "Doublylist.h"
 
-void CreateList(List &L) {
-    L.first = NIL;
-    L.last = NIL;
+void createList(List &L) {
+    L.First = NIL;
+    L.Last = NIL;
 }
 
-address alokasi(infotype x) {
-    address P = new ElmtList;
-    P->info = x;
+address alokasi(infotype data) {
+    address P = new Node;
+    P->info = data;
     P->next = NIL;
     P->prev = NIL;
     return P;
@@ -437,73 +443,95 @@ void dealokasi(address &P) {
 }
 
 void insertLast(List &L, address P) {
-    if (L.first == NIL) {
-        L.first = P;
-        L.last = P;
+    if (L.First == NIL) {
+        L.First = P;
+        L.Last = P;
     } else {
-        L.last->next = P;
-        P->prev = L.last;
-        L.last = P;
+        P->prev = L.Last;
+        L.Last->next = P;
+        L.Last = P;
     }
 }
 
 void printInfo(List L) {
-    address P = L.first;
-    while (P != NIL) {
-        cout << "Nomor Polisi : " << P->info.nopol << endl;
-        cout << "Warna        : " << P->info.warna << endl;
-        cout << "Tahun        : " << P->info.tahunbuat << endl;
-        cout << endl;
-        P = P->next;
+    address P = L.First;
+
+    if (P == NIL) {
+        cout << "List kosong" << endl;
+    } else {
+        while (P != NIL) {
+            cout << "Nomor Polisi : " << P->info.nopol << endl;
+            cout << "Warna        : " << P->info.warna << endl;
+            cout << "Tahun Buat   : " << P->info.thnBuat << endl;
+            cout << "------------------------" << endl;
+            P = P->next;
+        }
     }
 }
 
 address findElm(List L, string nopol) {
-    address P = L.first;
+    address P = L.First;
     while (P != NIL) {
-        if (P->info.nopol == nopol) return P;
+        if (P->info.nopol == nopol) {
+            return P;
+        }
         P = P->next;
     }
     return NIL;
 }
 
 void deleteFirst(List &L) {
-    if (L.first != NIL) {
-        address P = L.first;
+    address P;
 
-        if (L.first == L.last) {
-            L.first = L.last = NIL;
+    if (L.First != NIL) {
+        P = L.First;
+
+        if (L.First == L.Last) {
+            L.First = NIL;
+            L.Last = NIL;
         } else {
-            L.first = P->next;
-            L.first->prev = NIL;
+            L.First = P->next;
+            L.First->prev = NIL;
+            P->next = NIL;
         }
         dealokasi(P);
     }
 }
 
 void deleteLast(List &L) {
-    if (L.first != NIL) {
-        address P = L.last;
+    address P;
 
-        if (L.first == L.last) {
-            L.first = L.last = NIL;
+    if (L.Last != NIL) {
+        P = L.Last;
+
+        if (L.First == L.Last) {
+            L.First = NIL;
+            L.Last = NIL;
         } else {
-            L.last = P->prev;
-            L.last->next = NIL;
+            L.Last = P->prev;
+            L.Last->next = NIL;
+            P->prev = NIL;
         }
         dealokasi(P);
     }
 }
 
 void deleteAfter(List &L, address Prec) {
+    address P;
+
     if (Prec != NIL && Prec->next != NIL) {
-        address P = Prec->next;
-        Prec->next = P->next;
-        if (P->next != NIL) {
-            P->next->prev = Prec;
+        P = Prec->next;
+
+        if (P == L.Last) {
+            L.Last = Prec;
+            Prec->next = NIL;
         } else {
-            L.last = Prec;
+            Prec->next = P->next;
+            P->next->prev = Prec;
         }
+
+        P->next = NIL;
+        P->prev = NIL;
         dealokasi(P);
     }
 }
@@ -511,81 +539,51 @@ void deleteAfter(List &L, address Prec) {
 ### 3. [main.cpp]
 
 ```C++
-#include "doublelist.h"
+#include "Doublylist.h"
 
 int main() {
     List L;
-    CreateList(L);
-
     infotype x;
     address P;
-    string nopolInput;
 
-    // Input 4 kali sesuai contoh modul
-    for (int i = 0; i < 4; i++) {
-        cout << "masukkan nomor polisi: ";
-        cin >> x.nopol;
+    createList(L);
 
-        // Cek duplikasi
-        if (findElm(L, x.nopol) != NIL) {
-            cout << "nomor polisi sudah terdaftar\n\n";
-            // skip input warna/tahun kalau dupe
-            continue;
-        }
+    x.nopol = "D001";
+    x.warna = "hitam";
+    x.thnBuat = 90;
+    insertLast(L, alokasi(x));
 
-        cout << "masukkan warna kendaraan: ";
-        cin >> x.warna;
+    x.nopol = "D003";
+    x.warna = "putih";
+    x.thnBuat = 70;
+    insertLast(L, alokasi(x));
 
-        cout << "masukkan tahun kendaraan: ";
-        cin >> x.tahunbuat;
+    x.nopol = "D004";
+    x.warna = "kuning";
+    x.thnBuat = 90;
+    insertLast(L, alokasi(x));
 
-        cout << endl;
-
-        P = alokasi(x);
-        insertLast(L, P);
-    }
-
-    cout << "DATA LIST 1\n";
+    cout << "DATA LIST KENDARAAN" << endl;
+    cout << "==================" << endl;
     printInfo(L);
-    cout << endl;
 
-
-    // ===== SOAL NOMOR 2 : Find D001 =====
-    cout << "Masukkan Nomor Polisi yang dicari : ";
-    cin >> nopolInput;
-
-    address found = findElm(L, nopolInput);
-    if (found != NIL) {
-        cout << "Nomor Polisi : " << found->info.nopol << endl;
-        cout << "Warna        : " << found->info.warna << endl;
-        cout << "Tahun        : " << found->info.tahunbuat << endl;
+    cout << "\nMencari nomor polisi D001" << endl;
+    P = findElm(L, "D001");
+    if (P != NIL) {
+        cout << "Data ditemukan:" << endl;
+        cout << "Nopol : " << P->info.nopol << endl;
+        cout << "Warna : " << P->info.warna << endl;
+        cout << "Tahun : " << P->info.thnBuat << endl;
     } else {
-        cout << "Data tidak ditemukan.\n";
+        cout << "Data tidak ditemukan" << endl;
     }
 
-    cout << endl;
+    cout << "\nHapus elemen pertama" << endl;
+    deleteFirst(L);
+    printInfo(L);
 
-
-    // ===== SOAL NOMOR 3 : Hapus =====
-    cout << "Masukkan Nomor Polisi yang akan dihapus : ";
-    cin >> nopolInput;
-
-    address target = findElm(L, nopolInput);
-
-    if (target != NIL) {
-        if (target == L.first) {
-            deleteFirst(L);
-        } else if (target == L.last) {
-            deleteLast(L);
-        } else {
-            deleteAfter(L, target->prev);
-        }
-        cout << "Data dengan nomor polisi " << nopolInput << " berhasil dihapus.\n";
-    } else {
-        cout << "Data tidak ditemukan.\n";
-    }
-
-    cout << "\nDATA LIST 1\n";
+    cout << "\nHapus elemen terakhir" << endl;
+    deleteLast(L);
     printInfo(L);
 
     return 0;
@@ -593,7 +591,7 @@ int main() {
 ```
 
 #### Output:
-<img width="1020" height="920" alt="image" src="https://github.com/user-attachments/assets/ead53e62-fdab-42d5-84a6-fa2a90b31401" />
+<img width="486" height="714" alt="image" src="https://github.com/user-attachments/assets/5b97cf0c-4982-45c3-9f08-0d1eb94ecdc0" />
 
 
 
