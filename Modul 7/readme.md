@@ -224,99 +224,113 @@ Program utama ini digunakan untuk mengelola data pada sebuah Stack dengan menjal
 ### 1. [soalstack.h]
 
 ```C++
-#ifndef SOALSTACK_H
-#define SOALSTACK_H
-#define MAX 20
-#define NIL -1
+#ifndef STACK_H
+#define STACK_H
+
 #include <iostream>
 using namespace std;
 
-typedef int infotype;
+const int MAX_STACK = 20;
+
+typedef int Item;
 
 struct Stack {
-    infotype info[MAX];
-    int top;
+    Item elemen[MAX_STACK];
+    int idxTop;
 };
 
-void createStack(Stack &S);
-void push(Stack &S, infotype x);
-infotype pop(Stack &S);
-void printInfo(Stack S);
-void balikStack(Stack &S);
+void init(Stack &S);
+bool empty(Stack S);
+bool full(Stack S);
 
-// fungsi untuk nomor 2
-void pushAscending(Stack &S, infotype x);
+void pushData(Stack &S, Item x);
+Item popData(Stack &S);
 
-// fungsi untuk nomor 3
-void getInputStream(Stack &S);
+void tampil(Stack S);
+void reverse(Stack &S);
+
+// soal 2
+void pushUrut(Stack &S, Item x);
+
+// soal 3
+void bacaInput(Stack &S);
 
 #endif
 ```
 ### 2. [soalstack.cpp]
 ```C++
-#include "soalstack.h"
+#include "Stack.h"
 
-void createStack(Stack &S) {
-    S.top = NIL;
+void init(Stack &S) {
+    S.idxTop = -1;
 }
 
-void push(Stack &S, infotype x) {
-    if (S.top == MAX - 1) return;
-    S.top++;
-    S.info[S.top] = x;
+bool empty(Stack S) {
+    return S.idxTop == -1;
 }
 
-infotype pop(Stack &S) {
-    if (S.top == NIL) return -999; 
-    infotype x = S.info[S.top];
-    S.top--;
-    return x;
+bool full(Stack S) {
+    return S.idxTop == MAX_STACK - 1;
 }
 
-void printInfo(Stack S) {
-    cout << "[TOP] ";
-    for (int i = S.top; i >= 0; i--) {
-        cout << S.info[i] << " ";
+void pushData(Stack &S, Item x) {
+    if (!full(S)) {
+        S.idxTop++;
+        S.elemen[S.idxTop] = x;
+    }
+}
+
+Item popData(Stack &S) {
+    if (!empty(S)) {
+        Item hasil = S.elemen[S.idxTop];
+        S.idxTop--;
+        return hasil;
+    }
+    return -1;
+}
+
+void tampil(Stack S) {
+    cout << "Isi Stack (atas ke bawah): ";
+    for (int i = S.idxTop; i >= 0; i--) {
+        cout << S.elemen[i] << " ";
     }
     cout << endl;
 }
 
-void balikStack(Stack &S) {
-    Stack temp;
-    createStack(temp);
+void reverse(Stack &S) {
+    Stack bantu;
+    init(bantu);
 
-    while (S.top != NIL) {
-        push(temp, pop(S));
+    while (!empty(S)) {
+        pushData(bantu, popData(S));
     }
 
-    S = temp;
+    S = bantu;
 }
 
-void pushAscending(Stack &S, infotype x) {
-    if (S.top == MAX - 1) return;
+void pushUrut(Stack &S, Item x) {
+    Stack sementara;
+    init(sementara);
 
-    Stack temp;
-    createStack(temp);
-
-    while (S.top != NIL && S.info[S.top] < x) {
-        push(temp, pop(S));
+    while (!empty(S) && S.elemen[S.idxTop] < x) {
+        pushData(sementara, popData(S));
     }
 
-    push(S, x);
+    pushData(S, x);
 
-    while (temp.top != NIL) {
-        push(S, pop(temp));
+    while (!empty(sementara)) {
+        pushData(S, popData(sementara));
     }
 }
 
-void getInputStream(Stack &S) {
-    char c;
+void bacaInput(Stack &S) {
+    char ch;
     while (true) {
-        c = cin.get();
-        if (c == '\n') break;
-        int x = c - '0';  
-        if (x >= 0 && x <= 9) {
-            push(S, x);
+        ch = cin.get();
+        if (ch == '\n') break;
+
+        if (ch >= '0' && ch <= '9') {
+            pushData(S, ch - '0');
         }
     }
 }
@@ -324,24 +338,22 @@ void getInputStream(Stack &S) {
 ### 3. [main.cpp] soal 1
 
 ```C++
-#include "soalstack.h"
+#include "Stack.h"
 
 int main() {
-    cout << "Hello world!" << endl;
-
     Stack S;
-    createStack(S);
+    init(S);
 
-    push(S, 3);
-    push(S, 4);
-    push(S, 8);
-    push(S, 2);
+    pushData(S, 5);
+    pushData(S, 1);
+    pushData(S, 7);
+    pushData(S, 3);
 
-    printInfo(S);
+    tampil(S);
 
-    cout << "balik stack" << endl;
-    balikStack(S);
-    printInfo(S);
+    cout << "Setelah dibalik:" << endl;
+    reverse(S);
+    tampil(S);
 
     return 0;
 }
@@ -349,26 +361,23 @@ int main() {
 ### 4. [main.cpp] soal 2
 
 ```C++
-#include "soalstack.h"
+#include "stack.h"
 
 int main() {
-    cout << "Hello world!" << endl;
-
     Stack S;
-    createStack(S);
+    init(S);
 
-    pushAscending(S, 3);
-    pushAscending(S, 4);
-    pushAscending(S, 8);
-    pushAscending(S, 2);
-    pushAscending(S, 3);
-    pushAscending(S, 9);
+    pushUrut(S, 4);
+    pushUrut(S, 2);
+    pushUrut(S, 9);
+    pushUrut(S, 1);
+    pushUrut(S, 6);
 
-    printInfo(S);
+    tampil(S);
 
-    cout << "balik stack" << endl;
-    balikStack(S);
-    printInfo(S);
+    cout << "Setelah dibalik:" << endl;
+    reverse(S);
+    tampil(S);
 
     return 0;
 }
@@ -399,7 +408,7 @@ int main() {
 
 #### Output:
 #### Soal nomor 1:
-<img width="192" height="96" alt="image" src="https://github.com/user-attachments/assets/c9c10b84-b3ed-4ed5-b779-bfc4744c4548" />
+<img width="442" height="121" alt="image" src="https://github.com/user-attachments/assets/2af2f1f9-5da4-47d8-bac7-978058752061" />
 
 #### Soal nomor 2:
 <img width="182" height="85" alt="image" src="https://github.com/user-attachments/assets/ff3a039c-2365-40ea-81ea-24f3e1bb0564" />
@@ -410,11 +419,11 @@ int main() {
 Program ini dibuat untuk mengimplementasikan struktur data stack menggunakan pendekatan pointer seperti pada linked list. Stack bekerja dengan prinsip LIFO (Last In First Out), sehingga data terakhir yang dimasukkan akan menjadi data pertama yang diambil.
 
 #### Full code Screenshot:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/54319d21-e979-47fb-92ff-7238b37a9a71" />
+<img width="389" height="598" alt="image" src="https://github.com/user-attachments/assets/3e512b65-2970-4421-b328-4bc036704737" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/38945648-451e-4f37-a385-19a0ac38f3e2" />
+<img width="349" height="651" alt="image" src="https://github.com/user-attachments/assets/cf508cd7-16a0-4d1a-b110-ba35dde746fd" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/277b0c69-733d-4325-a5ce-d8581df2d613" />
+<img width="461" height="492" alt="image" src="https://github.com/user-attachments/assets/a0e493bd-5798-4d55-af93-1add7b78335d" />
 
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/6ac5be95-6921-4db0-a54a-3356ee467bd2" />
 
