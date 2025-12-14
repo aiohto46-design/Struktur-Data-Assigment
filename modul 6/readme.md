@@ -1,4 +1,4 @@
-# <h1 align="center">Laporan Praktikum Modul 6 Double Linked List (Bagian 1) </h1>
+# <h1 align="center">Laporan Praktikum Modul 6 Double Linked List (Bagian Pertama) </h1>
 <p align="center">Hafidh Nuruddin Akbar</p>
 
 ## Dasar Teori
