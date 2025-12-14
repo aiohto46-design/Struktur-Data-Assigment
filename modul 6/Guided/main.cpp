@@ -1,49 +1,61 @@
-#include "Doublylist.h"
+#include "DLLPlaylist.h"
+
+address getNodeAt(List L, int posisi) {
+    int idx = 1;
+    address P = L.head;
+    while (P != nullptr && idx < posisi) {
+        P = P->next;
+        idx++;
+    }
+    return P;
+}
 
 int main() {
     List L;
-    infotype x;
-    address P;
-
     createList(L);
 
-    x.nopol = "D001";
-    x.warna = "hitam";
-    x.thnBuat = 90;
-    insertLast(L, alokasi(x));
+    insertLast(L, {"Senja di Kota", "Nona Band", 210, 150, 4.2});
+    insertLast(L, {"Langkahmu", "Delta", 185, 320, 4.8});
+    insertLast(L, {"Hujan Minggu", "Arka", 240, 90, 3.95});
 
-    x.nopol = "D003";
-    x.warna = "putih";
-    x.thnBuat = 70;
-    insertLast(L, alokasi(x));
+    cout << "\n=== List Awal ===\n";
+    viewList(L);
 
-    x.nopol = "D004";
-    x.warna = "kuning";
-    x.thnBuat = 90;
-    insertLast(L, alokasi(x));
+    Song removed;
+    deleteLast(L, removed);
 
-    cout << "DATA LIST KENDARAAN" << endl;
-    cout << "==================" << endl;
-    printInfo(L);
+    cout << "\n Setelah deleteLast \n";
+    viewList(L);
 
-    cout << "\nMencari nomor polisi D001" << endl;
-    P = findElm(L, "D001");
-    if (P != NIL) {
-        cout << "Data ditemukan:" << endl;
-        cout << "Nopol : " << P->info.nopol << endl;
-        cout << "Warna : " << P->info.warna << endl;
-        cout << "Tahun : " << P->info.thnBuat << endl;
-    } else {
-        cout << "Data tidak ditemukan" << endl;
-    }
+    cout << "\n Update posisi ke-2 \n";
+    updateAtPosition(L, 2);
 
-    cout << "\nHapus elemen pertama" << endl;
-    deleteFirst(L);
-    printInfo(L);
+    cout << "\n Setelah Update \n";
+    viewList(L);
 
-    cout << "\nHapus elemen terakhir" << endl;
-    deleteLast(L);
-    printInfo(L);
+    address pos2 = getNodeAt(L, 2);
+
+    insertBefore(L, pos2, {"Senandung", "Mira", 175, 120, 4.0});
+    cout << "\n Setelah insertBefore posisi 2 \n";
+    viewList(L);
+
+    cout << "\n UpdateBefore posisi 2 \n";
+    pos2 = getNodeAt(L, 2);
+    updateBefore(L, pos2);
+
+    cout << "\n Setelah updateBefore \n";
+    viewList(L);
+
+    cout << "\n deleteBefore posisi 3 \n";
+    Song removed2;
+    address pos3 = getNodeAt(L, 3);
+    deleteBefore(L, pos3, removed2);
+
+    cout << "\n Setelah deleteBefore \n";
+    viewList(L);
+
+    cout << "\n Searching PopularityScore 150–300 \n";
+    searchByPopularityRange(L, 150.0, 300.0);
 
     return 0;
 }
