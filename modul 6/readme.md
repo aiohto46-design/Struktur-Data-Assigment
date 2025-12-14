@@ -75,7 +75,7 @@ float getPopularityScore(Song S);
 
 #endif
 ```
-Program ini merupakan implementasi Doubly Linked List yang digunakan untuk mengelola data playlist lagu, di mana setiap node menyimpan informasi lagu dan terhubung dua arah. Program menyediakan fungsi untuk menambah, menghapus, memperbarui, menampilkan, serta mencari lagu berdasarkan nilai popularitas.
+Program ini adalah penerapan Doubly Linked List untuk mengelola data playlist lagu, di mana setiap node berisi informasi lagu dan saling terhubung ke node sebelumnya dan sesudahnya. Program ini menyediakan fitur untuk menambahkan, menghapus, memperbarui, menampilkan, serta mencari lagu berdasarkan tingkat popularitas.
 
 ### 2. [DLLPlayList.cpp]
 
@@ -303,7 +303,7 @@ void searchByPopularityRange(List L, float minScore, float maxScore) {
     }
 }
 ```
-Program ini merupakan implementasi lengkap Doubly Linked List untuk pengelolaan playlist lagu, yang mencakup proses alokasi dan dealokasi node, operasi penyisipan dan penghapusan di berbagai posisi, pembaruan data lagu, perhitungan skor popularitas, penelusuran data berdasarkan rentang skor, serta penampilan seluruh isi playlist secara terurut. Program ini mengatur setiap lagu sebagai node yang terhubung dua arah sehingga memudahkan manipulasi data playlist secara fleksibel.
+Program ini merupakan penerapan Doubly Linked List secara menyeluruh untuk mengelola playlist lagu. Implementasinya mencakup proses alokasi dan dealokasi node, operasi penyisipan dan penghapusan pada berbagai posisi, pembaruan data lagu, perhitungan skor popularitas, pencarian data berdasarkan rentang skor, serta penampilan seluruh isi playlist secara terurut. Setiap lagu direpresentasikan sebagai node yang saling terhubung dua arah, sehingga memungkinkan pengelolaan dan manipulasi data playlist secara lebih mudah dan fleksibel.
 
 ### 3. [main.cpp]
 
@@ -370,8 +370,7 @@ int main() {
     return 0;
 }
 ```
-Program ini digunakan untuk mengatur data playlist lagu, seperti menambah, menghapus, menyisipkan, dan memperbarui lagu pada posisi tertentu.
-Seluruh pengelolaan playlist dilakukan menggunakan struktur data Doubly Linked List, sehingga setiap lagu dapat diakses, dipindahkan, atau dimodifikasi melalui node yang saling terhubung dua arah.
+Program ini berfungsi untuk mengelola data playlist lagu, mulai dari menambah, menghapus, menyisipkan, hingga memperbarui lagu pada posisi tertentu. Seluruh proses pengelolaan playlist menggunakan struktur data Doubly Linked List, sehingga setiap lagu direpresentasikan sebagai node yang saling terhubung dua arah dan dapat diakses, dipindahkan, serta dimodifikasi dengan lebih mudah.
 
 ## Unguided 
 ### 1. [doublelist.h]
@@ -617,9 +616,7 @@ Program ini mensimulasikan cara kerja struktur data Double Linked List untuk pen
 
 
 ## Kesimpulan
-Ringkasan dan interpretasi pandangan kalia dari hasil praktikum dan pembelajaran yang didapat[1]. Pada modul ini dapat disimpulkan kalau Doubly Linked List sangat cocok digunakan untuk mengelola data secara dinamis karena setiap node memiliki pointer ke depan dan ke belakang.
-Hal ini memudahkan proses penelusuran, pencarian, penambahan, maupun penghapusan data tanpa harus memindahkan seluruh elemen.
-Struktur ini memberikan fleksibilitas lebih besar dibanding single linked list, terutama pada operasi delete dan insert di tengah list.
+Dari hasil praktikum dan pembelajaran di modul ini, bisa disimpulkan kalau Doubly Linked List cocok banget buat ngelola data yang sifatnya dinamis. Soalnya, tiap node punya pointer ke depan dan ke belakang, jadi proses nyari, nambah, atau hapus data jadi lebih gampang tanpa harus mindahin semua elemen. Dibanding Single Linked List, struktur ini lebih fleksibel, terutama pas ngelakuin insert dan delete di bagian tengah list.
 
 
 
