@@ -202,45 +202,45 @@ int main() {
 Program main() ini berperan sebagai menu interaktif untuk mengoperasikan sistem antrean ekspedisi Gojira Express. Melalui menu yang disediakan, pengguna dapat menambahkan data paket ke dalam antrean (enqueue), menghapus paket yang berada di posisi terdepan (dequeue), menampilkan seluruh data paket dalam antrean, menghitung total biaya pengiriman, serta mengakhiri program. Secara keseluruhan, program ini mensimulasikan mekanisme antrean pada layanan pengiriman paket dengan memanfaatkan struktur data Queue.
 
 ## Unguided 
-### 1. [Qantri.h]
+### 1. [queue.h]
 
 ```C++
-#ifndef QANTRI_H
-#define QANTRI_H
-
-#include <iostream>
-using namespace std;
+#ifndef QUEUE_H
+#define QUEUE_H
 
 #define MAX 5
-#define NIL -1
 
 typedef int infotype;
-struct Queue {
+
+typedef struct {
     infotype info[MAX];
     int head;
     int tail;
-};
+} Queue;
 
-void createQueue(Queue &Q);
+/* Prototype ADT Queue */
+void CreateQueue(Queue &Q);
 bool isEmptyQueue(Queue Q);
 bool isFullQueue(Queue Q);
 void enqueue(Queue &Q, infotype x);
-infotype dequeue(Queue &Q);
+void dequeue(Queue &Q, infotype &x);
 void printInfo(Queue Q);
 
 #endif
 ```
-### 2. [Qantri.cpp]
+### 2. [queue.cpp]
 ```C++
-#include "Qantri.h"
+#include "queue.h"
+#include <iostream>
+using namespace std;
 
-void createQueue(Queue &Q) {
-    Q.head = NIL;
-    Q.tail = NIL;
+void CreateQueue(Queue &Q) {
+    Q.head = 0;
+    Q.tail = -1;
 }
 
 bool isEmptyQueue(Queue Q) {
-    return Q.head == NIL;
+    return Q.tail == -1;
 }
 
 bool isFullQueue(Queue Q) {
@@ -249,39 +249,31 @@ bool isFullQueue(Queue Q) {
 
 void enqueue(Queue &Q, infotype x) {
     if (!isFullQueue(Q)) {
-        if (isEmptyQueue(Q)) {
-            Q.head = 0;
-            Q.tail = 0;
-        } else {
-            Q.tail++;
-        }
+        Q.tail++;
         Q.info[Q.tail] = x;
     }
 }
 
-infotype dequeue(Queue &Q) {
-    infotype x = Q.info[Q.head];
-
-    if (Q.head == Q.tail) {
-        Q.head = NIL;
-        Q.tail = NIL;
-    } else {
-        Q.head++;
+void dequeue(Queue &Q, infotype &x) {
+    if (!isEmptyQueue(Q)) {
+        x = Q.info[Q.head];
+        for (int i = Q.head; i < Q.tail; i++) {
+            Q.info[i] = Q.info[i + 1];
+        }
+        Q.tail--;
     }
-    return x;
 }
 
 void printInfo(Queue Q) {
-    cout << Q.head << " - " << Q.tail << "   | ";
-
+    cout << Q.head << " - " << Q.tail << " | ";
     if (isEmptyQueue(Q)) {
         cout << "empty queue";
     } else {
         for (int i = Q.head; i <= Q.tail; i++) {
-            cout << Q.info[i] << "";
+            cout << Q.info[i] << " ";
         }
     }
-   cout << endl;
+    cout << endl;
 }
 ```
 ### 4. [Qantri2.cpp]
@@ -401,33 +393,34 @@ void printInfo(Queue Q) {
 ### 3. [main.cpp]
 
 ```C++
-#include "Qantri.h"
+#include <iostream>
+#include "queue.h"
+using namespace std;
 
 int main() {
-    cout << "Hello world!" << endl;
-
     Queue Q;
-    createQueue(Q);
+    infotype x;
 
-    cout << "------------------------" << endl;
-    cout << "H - T \t| Queue Info" << endl;
-    cout << "------------------------" << endl;
+    cout << "Hello World" << endl;
+    CreateQueue(Q);
+
+    cout << "-------------------" << endl;
+    cout << "H - T | Queue info" << endl;
 
     printInfo(Q);
+    enqueue(Q, 5); printInfo(Q);
+    enqueue(Q, 2); printInfo(Q);
+    enqueue(Q, 7); printInfo(Q);
+    enqueue(Q, 4); printInfo(Q);
+    dequeue(Q, x); printInfo(Q);
+    dequeue(Q, x); printInfo(Q);
 
-    enqueue(Q, 5);  printInfo(Q);
-    enqueue(Q, 2);  printInfo(Q);
-    enqueue(Q, 7);  printInfo(Q);
-    dequeue(Q);     printInfo(Q);
-    enqueue(Q, 4);  printInfo(Q);
-    dequeue(Q);     printInfo(Q);
-    dequeue(Q);     printInfo(Q);
     return 0;
 }
 ```
 #### Output:
 #### Soal 1:
-<img width="626" height="305" alt="image" src="https://github.com/user-attachments/assets/e1415f73-c9e4-4973-a944-aeef363c830e" />
+<img width="442" height="213" alt="image" src="https://github.com/user-attachments/assets/bb32d167-e87d-4df1-ab1f-9545a6c8daba" />
 
 #### Soal 2:
 <img width="493" height="283" alt="image" src="https://github.com/user-attachments/assets/89b3d7a8-6e79-4aed-a5c8-252a37ee8842" />
@@ -439,19 +432,20 @@ int main() {
 Program ini dirancang untuk menerapkan konsep ADT Queue (antrian) menggunakan array dalam bahasa C++. Program tersebut mensimulasikan proses antrean melalui operasi utama enqueue (penambahan data) dan dequeue (penghapusan data) sesuai dengan prinsip FIFO (First In First Out). Pada latihan ini, struktur queue diimplementasikan dengan beberapa pendekatan, yaitu queue dengan pergerakan head dan tail serta circular queue, guna memperlihatkan perbedaan cara pengelolaan indeks dalam struktur data queue.
 
 #### Full code Screenshot:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/e3b2ebfd-9935-4374-803a-6c6c4513403d" />
+<img width="559" height="426" alt="image" src="https://github.com/user-attachments/assets/3c1a9cd4-d780-42ab-81db-c301a36a1d58" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/914b77a0-e8e0-4b70-b605-072f5107f9e7" />
+<img width="538" height="733" alt="image" src="https://github.com/user-attachments/assets/6ae3316f-2b30-444b-b3db-523f986e8bef" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/20097e09-2d7f-49f6-b27f-e64cb89897bc" />
+<img width="515" height="647" alt="image" src="https://github.com/user-attachments/assets/78d4f2f7-0fe1-4b97-9f96-43e177298ff5" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/921979ec-b70a-4bc5-a852-bd501fd8401c" />
+<img width="528" height="670" alt="image" src="https://github.com/user-attachments/assets/9ace9b69-39d8-49f1-910b-402a7a5608ba" />
 
-<img width="1919" height="1074" alt="image" src="https://github.com/user-attachments/assets/b6a5951f-dc86-4119-ab3b-a6d5b05b3a22" />
+<img width="544" height="454" alt="image" src="https://github.com/user-attachments/assets/7a53a5f0-cbbc-4442-84e5-9a191c41dbe2" />
 
 
 ## Kesimpulan
 Ringkasan dan interpretasi dari hasil praktikum serta pembelajaran pada modul ini menunjukkan bahwa struktur data Queue sangat efektif digunakan untuk menangani proses antrean yang berjalan secara berurutan. Penerapan circular queue terbukti lebih efisien dibandingkan queue linear karena mampu memanfaatkan ruang memori secara optimal dan menghindari pemborosan akibat pergeseran data. Dengan memahami cara kerja penunjuk head dan tail, seorang programmer dapat menentukan jenis queue yang paling tepat sesuai dengan kebutuhan dan karakteristik sistem yang akan dikembangkan.
+
 ## Referensi
 [1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
 
