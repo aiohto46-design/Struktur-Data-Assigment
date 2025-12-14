@@ -606,11 +606,11 @@ Program dapat melakukan:
 - menolak input kendaraan dengan nopol yang sama (duplikasi)
 Program ini mensimulasikan cara kerja struktur data Double Linked List untuk pengolahan data kendaraan secara dinamis.
 #### Full code Screenshot:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/cb3d1f32-c50b-487f-b408-ae51c39b75b6" />
+<img width="453" height="713" alt="image" src="https://github.com/user-attachments/assets/17d4c42d-7e92-4b9f-9e9d-63edb40906e1" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/362d23f7-1a6d-48df-851b-5f8361dffdda" />
+<img width="524" height="720" alt="image" src="https://github.com/user-attachments/assets/886651ca-dde6-40ca-90ec-6d34619aa948" />
 
-<img width="1917" height="1079" alt="image" src="https://github.com/user-attachments/assets/cae371a4-c2bb-432e-a55a-fcb7a56fb7ca" />
+<img width="476" height="734" alt="image" src="https://github.com/user-attachments/assets/2d1467f6-1835-4403-af39-c05e27396f33" />
 
 
 ## Kesimpulan
