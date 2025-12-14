@@ -341,6 +341,8 @@ void bacaInput(Stack &S) {
 #include "Stack.h"
 
 int main() {
+    cout << "Hello world!" << endl;
+    
     Stack S;
     init(S);
 
@@ -364,6 +366,8 @@ int main() {
 #include "stack.h"
 
 int main() {
+    cout << "Hello world!" << endl;
+
     Stack S;
     init(S);
 
@@ -385,22 +389,22 @@ int main() {
 ### 5. [main.cpp] soal 3
 
 ```C++
-#include "soalstack.h"
+#include "stack.h"
 
 int main() {
     cout << "Hello world!" << endl;
 
     Stack S;
-    createStack(S);
+    init(S);
 
-    cout << "Masukkan input: ";
-    getInputStream(S);
+    cout << "Masukkan angka (tanpa spasi): ";
+    bacaInput(S);
 
-    printInfo(S);
+    tampil(S);
 
-    cout << "balik stack" << endl;
-    balikStack(S);
-    printInfo(S);
+    cout << "Setelah dibalik:" << endl;
+    reverse(S);
+    tampil(S);
 
     return 0;
 }
@@ -408,13 +412,13 @@ int main() {
 
 #### Output:
 #### Soal nomor 1:
-<img width="442" height="121" alt="image" src="https://github.com/user-attachments/assets/2af2f1f9-5da4-47d8-bac7-978058752061" />
+<img width="537" height="120" alt="image" src="https://github.com/user-attachments/assets/954c58fc-bbe3-4b67-8572-2e4da2ad317f" />
 
 #### Soal nomor 2:
-<img width="182" height="85" alt="image" src="https://github.com/user-attachments/assets/ff3a039c-2365-40ea-81ea-24f3e1bb0564" />
+<img width="437" height="93" alt="image" src="https://github.com/user-attachments/assets/f5ea83d8-7b70-4a1f-be05-144121690f48" />
 
 #### Soal nomor 3:
-<img width="224" height="107" alt="image" src="https://github.com/user-attachments/assets/0927e53a-7f9c-45ee-9e17-9f3eb6ec281e" />
+<img width="567" height="139" alt="image" src="https://github.com/user-attachments/assets/c4288e94-4a7b-49c3-bf1c-e3c4169c326d" />
 
 Program ini dibuat untuk mengimplementasikan struktur data stack menggunakan pendekatan pointer seperti pada linked list. Stack bekerja dengan prinsip LIFO (Last In First Out), sehingga data terakhir yang dimasukkan akan menjadi data pertama yang diambil.
 
@@ -423,11 +427,11 @@ Program ini dibuat untuk mengimplementasikan struktur data stack menggunakan pen
 
 <img width="349" height="651" alt="image" src="https://github.com/user-attachments/assets/cf508cd7-16a0-4d1a-b110-ba35dde746fd" />
 
-<img width="461" height="492" alt="image" src="https://github.com/user-attachments/assets/a0e493bd-5798-4d55-af93-1add7b78335d" />
+<img width="453" height="124" alt="image" src="https://github.com/user-attachments/assets/9c215121-dd96-4fe1-819e-c31636ee071c" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/6ac5be95-6921-4db0-a54a-3356ee467bd2" />
+<img width="455" height="553" alt="image" src="https://github.com/user-attachments/assets/d29923b4-c91c-4a67-9b98-bc8f1bf4bf7d" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/204a41f1-9656-4e16-92fc-7abc766d8aec" />
+<img width="456" height="564" alt="image" src="https://github.com/user-attachments/assets/57ab9008-6c02-4c30-afd7-cb664ab099c7" />
 
 
 ## Kesimpulan
