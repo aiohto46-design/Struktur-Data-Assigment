@@ -218,7 +218,6 @@ typedef struct {
     int tail;
 } Queue;
 
-/* Prototype ADT Queue */
 void CreateQueue(Queue &Q);
 bool isEmptyQueue(Queue Q);
 bool isFullQueue(Queue Q);
@@ -229,6 +228,7 @@ void printInfo(Queue Q);
 #endif
 ```
 ### 2. [queue.cpp]
+
 ```C++
 #include "queue.h"
 #include <iostream>
@@ -240,7 +240,7 @@ void CreateQueue(Queue &Q) {
 }
 
 bool isEmptyQueue(Queue Q) {
-    return Q.tail == -1;
+    return Q.tail < Q.head;
 }
 
 bool isFullQueue(Queue Q) {
@@ -266,7 +266,8 @@ void dequeue(Queue &Q, infotype &x) {
 
 void printInfo(Queue Q) {
     cout << Q.head << " - " << Q.tail << " | ";
-    if (isEmptyQueue(Q)) {
+    
+    if (Q.tail < Q.head) {
         cout << "empty queue";
     } else {
         for (int i = Q.head; i <= Q.tail; i++) {
@@ -309,10 +310,10 @@ void enqueue(Queue &Q, infotype x) {
 void dequeue(Queue &Q, infotype &x) {
     if (!isEmptyQueue(Q)) {
         x = Q.info[Q.head];
-        if (Q.head == Q.tail) { 
-            CreateQueue(Q);     
+        if (Q.head == Q.tail) {
+            Q.head = Q.tail = -1;
         } else {
-            Q.head++;
+            Q.head++;  
         }
     }
 }
@@ -353,10 +354,9 @@ bool isFullQueue(Queue Q) {
 void enqueue(Queue &Q, infotype x) {
     if (!isFullQueue(Q)) {
         if (isEmptyQueue(Q)) {
-            Q.head = Q.tail = 0;
-        } else {
-            Q.tail = (Q.tail + 1) % MAX;
+            Q.head = 0;
         }
+        Q.tail = (Q.tail + 1) % MAX;
         Q.info[Q.tail] = x;
     }
 }
@@ -371,6 +371,22 @@ void dequeue(Queue &Q, infotype &x) {
         }
     }
 }
+
+void printInfo(Queue Q) {
+    cout << Q.head << " - " << Q.tail << " | ";
+    
+    if (isEmptyQueue(Q)) {
+        cout << "empty queue";
+    } else {
+        int i = Q.head;
+        while (true) {
+            cout << Q.info[i] << " ";
+            if (i == Q.tail) break;
+            i = (i + 1) % MAX;
+        }
+    }
+    cout << endl;
+}
 ```
 ### 3. [main.cpp]
 
@@ -383,46 +399,49 @@ int main() {
     Queue Q;
     infotype x;
 
-    cout << "Hello World" << endl;
+    cout << "Hello world!" << endl;
+    cout << "---" << endl;
+    cout << "H - T    Queue Info" << endl;
+    cout << "---" << endl;
+    
     CreateQueue(Q);
-
-    cout << "-------------------" << endl;
-    cout << "H - T | Queue info" << endl;
-
     printInfo(Q);
+    
     enqueue(Q, 5); printInfo(Q);
     enqueue(Q, 2); printInfo(Q);
     enqueue(Q, 7); printInfo(Q);
     enqueue(Q, 4); printInfo(Q);
     dequeue(Q, x); printInfo(Q);
     dequeue(Q, x); printInfo(Q);
+    dequeue(Q, x); printInfo(Q);
 
     return 0;
 }
 ```
+
 #### Output:
 #### Soal 1:
-<img width="190" height="153" alt="image" src="https://github.com/user-attachments/assets/37788fb5-d833-4dfa-bafa-2fd68d770df5" />
+<img width="420" height="215" alt="image" src="https://github.com/user-attachments/assets/6e0270ae-d186-480b-b314-2aa2e627c44a" />
 
 #### Soal 2:
-<img width="178" height="160" alt="image" src="https://github.com/user-attachments/assets/66fee0f1-df2f-4a6f-b525-f5abd48a863c" />
+<img width="420" height="212" alt="image" src="https://github.com/user-attachments/assets/1176096f-9f93-4c99-a7a5-ba09a65d04de" />
 
 #### Soal 3:
-<img width="297" height="196" alt="image" src="https://github.com/user-attachments/assets/74721280-9160-4105-9e49-2d7c00d0b98c" />
+<img width="422" height="210" alt="image" src="https://github.com/user-attachments/assets/5ce8f549-5db3-429a-81fc-1f9ccb29af05" />
 
 
 Program ini dirancang untuk menerapkan konsep ADT Queue (antrian) menggunakan array dalam bahasa C++. Program tersebut mensimulasikan proses antrean melalui operasi utama enqueue (penambahan data) dan dequeue (penghapusan data) sesuai dengan prinsip FIFO (First In First Out). Pada latihan ini, struktur queue diimplementasikan dengan beberapa pendekatan, yaitu queue dengan pergerakan head dan tail serta circular queue, guna memperlihatkan perbedaan cara pengelolaan indeks dalam struktur data queue.
 
 #### Full code Screenshot:
-<img width="559" height="426" alt="image" src="https://github.com/user-attachments/assets/3c1a9cd4-d780-42ab-81db-c301a36a1d58" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/bd22c769-31e9-4f99-85ed-96f350694ea0" />
 
-<img width="538" height="733" alt="image" src="https://github.com/user-attachments/assets/6ae3316f-2b30-444b-b3db-523f986e8bef" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/b6f2b890-865a-47c6-9d7b-9d87d1e5225a" />
 
-<img width="515" height="647" alt="image" src="https://github.com/user-attachments/assets/78d4f2f7-0fe1-4b97-9f96-43e177298ff5" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/07ee1769-749d-4466-be52-b8fa446ffb28" />
 
-<img width="528" height="670" alt="image" src="https://github.com/user-attachments/assets/9ace9b69-39d8-49f1-910b-402a7a5608ba" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/50515a15-c9d8-4abf-8645-c12b5d3b96dd" />
 
-<img width="544" height="454" alt="image" src="https://github.com/user-attachments/assets/7a53a5f0-cbbc-4442-84e5-9a191c41dbe2" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/14bdb1d7-f7d9-45a6-86e8-5f3388ade9c5" />
 
 
 ## Kesimpulan
