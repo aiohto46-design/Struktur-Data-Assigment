@@ -317,7 +317,7 @@ void dequeue(Queue &Q, infotype &x) {
 }
 
 ```
-### 5. [Qantri3.cpp]
+### 5. [queue3.cpp]
 
 ```C++
 #include "queue.h"
@@ -389,7 +389,7 @@ int main() {
 ```
 #### Output:
 #### Soal 1:
-<img width="442" height="213" alt="image" src="https://github.com/user-attachments/assets/bb32d167-e87d-4df1-ab1f-9545a6c8daba" />
+<img width="190" height="153" alt="image" src="https://github.com/user-attachments/assets/37788fb5-d833-4dfa-bafa-2fd68d770df5" />
 
 #### Soal 2:
 <img width="493" height="283" alt="image" src="https://github.com/user-attachments/assets/89b3d7a8-6e79-4aed-a5c8-252a37ee8842" />
