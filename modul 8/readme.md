@@ -309,13 +309,26 @@ void enqueue(Queue &Q, infotype x) {
 void dequeue(Queue &Q, infotype &x) {
     if (!isEmptyQueue(Q)) {
         x = Q.info[Q.head];
-        Q.head++;
-        if (Q.head > Q.tail) {
-            Q.head = Q.tail = -1;
+        if (Q.head == Q.tail) { 
+            CreateQueue(Q);     
+        } else {
+            Q.head++;
         }
     }
 }
 
+void printInfo(Queue Q) {
+    cout << Q.head << " - " << Q.tail << " | ";
+    
+    if (isEmptyQueue(Q)) {
+        cout << "empty queue";
+    } else {
+        for (int i = Q.head; i <= Q.tail; i++) {
+            cout << Q.info[i] << " ";
+        }
+    }
+    cout << endl;
+}
 ```
 ### 5. [queue3.cpp]
 
@@ -392,7 +405,7 @@ int main() {
 <img width="190" height="153" alt="image" src="https://github.com/user-attachments/assets/37788fb5-d833-4dfa-bafa-2fd68d770df5" />
 
 #### Soal 2:
-<img width="493" height="283" alt="image" src="https://github.com/user-attachments/assets/89b3d7a8-6e79-4aed-a5c8-252a37ee8842" />
+<img width="178" height="160" alt="image" src="https://github.com/user-attachments/assets/66fee0f1-df2f-4a6f-b525-f5abd48a863c" />
 
 #### Soal 3:
 <img width="490" height="282" alt="image" src="https://github.com/user-attachments/assets/d4803f92-086e-4fb6-bbf0-de8891008a55" />
