@@ -408,7 +408,7 @@ int main() {
 <img width="178" height="160" alt="image" src="https://github.com/user-attachments/assets/66fee0f1-df2f-4a6f-b525-f5abd48a863c" />
 
 #### Soal 3:
-<img width="490" height="282" alt="image" src="https://github.com/user-attachments/assets/d4803f92-086e-4fb6-bbf0-de8891008a55" />
+<img width="297" height="196" alt="image" src="https://github.com/user-attachments/assets/74721280-9160-4105-9e49-2d7c00d0b98c" />
 
 
 Program ini dirancang untuk menerapkan konsep ADT Queue (antrian) menggunakan array dalam bahasa C++. Program tersebut mensimulasikan proses antrean melalui operasi utama enqueue (penambahan data) dan dequeue (penghapusan data) sesuai dengan prinsip FIFO (First In First Out). Pada latihan ini, struktur queue diimplementasikan dengan beberapa pendekatan, yaitu queue dengan pergerakan head dan tail serta circular queue, guna memperlihatkan perbedaan cara pengelolaan indeks dalam struktur data queue.
