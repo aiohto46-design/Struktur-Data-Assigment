@@ -438,6 +438,7 @@ int main() {
 Merupakan file program utama yang berisi fungsi main() beserta menu interaktif. File ini berperan sebagai antarmuka pengguna untuk memanggil fungsi-fungsi BST yang didefinisikan pada bst.cpp melalui bst.h. Melalui menu yang tersedia, pengguna dapat melakukan operasi seperti insert, delete, search, traversal, serta operasi BST lainnya.
 
 ## Unguided 
+## SOAL 1
 ### 1. [bstree.h]
 
 ```C++
@@ -670,7 +671,9 @@ Setiap node menyimpan nomor polisi, warna kendaraan, dan tahun pembuatan.
 
 <img width="1917" height="1079" alt="image" src="https://github.com/user-attachments/assets/cae371a4-c2bb-432e-a55a-fcb7a56fb7ca" />
 
+## SOAL 2
 
+## SOAL 3
 ## Kesimpulan
 Ringkasan dan interpretasi pandangan kalian dari hasil praktikum dan pembelajaran yang didapat[1]. Modul 10 pada modul ini materi yang di sampaikan itu tentang Binary search Tree, Melalui praktikum Binary Search Tree (BST), mendapatkan pemahaman tentang struktur data tree dan penerapan rekursi dalam proses insert, search, traversal, dan delete. Praktikum ini menunjukkan bahwa BST mempermudah pengelolaan data secara terurut dan efisien. Selain itu, pembelajaran ini meningkatkan pemahaman tentang struktur data non-linear dan pemrograman yang modular.
 
