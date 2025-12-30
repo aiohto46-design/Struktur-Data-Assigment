@@ -1,4 +1,3 @@
-
 # <h1 align="center">Laporan Praktikum Modul 14 Graph </h1>
 <p align="center">Hafidh Nuruddin Akbar</p>
 
@@ -366,274 +365,513 @@ main.cpp digunakan untuk menguji program dengan melakukan pembuatan graph, mengh
 ## Unguided 
 
 ### Soal 1
-### 1. [doublelist.h]
+### 1. [graph.h]
 
 ```C++
-#include "graph.h"
-#include <iostream>
-#include <queue> //library queue untuk BFS
-#include <stack> //library stack untuk DFS
+#ifndef GRAPH_H
+#define GRAPH_H
 
+#include <iostream>
 using namespace std;
 
-int main() {
-    Graph G;
-    CreateGraph(G);
+typedef char infoGraph;
+typedef struct ElmNode *adrNode;
+typedef struct ElmEdge *adrEdge;
 
-    InsertNode(G, 'A');
-    InsertNode(G, 'B');
-    InsertNode(G, 'C');
-    InsertNode(G, 'D');
-    InsertNode(G, 'E');
-    InsertNode(G, 'F');
+struct ElmEdge {
+    adrNode node;
+    adrEdge next;
+};
 
-    //hubungkan antar node
-    ConnectNode(G, 'A', 'B');
-    ConnectNode(G, 'A', 'D');
-    ConnectNode(G, 'B', 'C');
-    ConnectNode(G, 'D', 'C');
-    ConnectNode(G, 'B', 'E');
-    ConnectNode(G, 'C', 'E');
-    ConnectNode(G, 'C', 'F');
-    ConnectNode(G, 'E', 'F');
+struct ElmNode {
+    infoGraph info;
+    int visited;
+    adrEdge firstEdge;
+    adrNode next;
+};
 
-    cout << "=== REPRESENTASI ADJACENCY LIST ===" << endl;
-    PrintInfoGraph(G);
-    cout << endl;
+struct Graph {
+    adrNode first;
+};
 
-    cout << "=== HASIL TRAVERSAL ===" << endl;
-    //mulai traversal dari node A
-    PrintBFS(G, 'A'); //BFS
-    PrintDFS(G, 'A'); //DFS
-    cout << endl;
+void CreateGraph(Graph &G);
+adrNode InsertNode(Graph &G, infoGraph x);
+void ConnectNode(adrNode N1, adrNode N2);
+void PrintInfoGraph(Graph G);
 
-    cout << "=== HAPUS NODE E ===" << endl;
-    DeleteNode(G, 'E');
-    if(FindNode(G, 'E') == NULL){
-        cout << "Node E berhasil terhapus" << endl;
-    } else {
-        cout << "Node E tidak berhasil terhapus" << endl;
-    }
-    cout << endl;
+#endif
 
-    cout << "=== REPRESENTASI ADJACENCY LIST ===" << endl;
-    PrintInfoGraph(G);
-    cout << endl;
-
-    cout << "=== HASIL TRAVERSAL ===" << endl;
-    //mulai traversal dari node A
-    PrintBFS(G, 'A'); //BFS
-    PrintDFS(G, 'A'); //DFS
-
-    return 0;
-}
 ```
-### 2. [doublelist.cpp]
+### 2. [graph.cpp]
 ```C++
-#include "doublelist.h"
+#include "graph.h"
 
-void CreateList(List &L) {
-    L.first = NIL;
-    L.last = NIL;
+void CreateGraph(Graph &G) {
+    G.first = NULL;
 }
 
-address alokasi(infotype x) {
-    address P = new ElmtList;
+adrNode InsertNode(Graph &G, infoGraph x) {
+    adrNode P = new ElmNode;
     P->info = x;
-    P->next = NIL;
-    P->prev = NIL;
+    P->visited = 0;
+    P->firstEdge = NULL;
+    P->next = NULL;
+
+    if (G.first == NULL) {
+        G.first = P;
+    } else {
+        adrNode Q = G.first;
+        while (Q->next != NULL) {
+            Q = Q->next;
+        }
+        Q->next = P;
+    }
     return P;
 }
 
-void dealokasi(address &P) {
-    delete P;
-    P = NIL;
+void ConnectNode(adrNode N1, adrNode N2) {
+    adrEdge E1 = new ElmEdge;
+    E1->node = N2;
+    E1->next = N1->firstEdge;
+    N1->firstEdge = E1;
+
+    adrEdge E2 = new ElmEdge;
+    E2->node = N1;
+    E2->next = N2->firstEdge;
+    N2->firstEdge = E2;
 }
 
-void insertLast(List &L, address P) {
-    if (L.first == NIL) {
-        L.first = P;
-        L.last = P;
-    } else {
-        L.last->next = P;
-        P->prev = L.last;
-        L.last = P;
-    }
-}
+void PrintInfoGraph(Graph G) {
+    cout << "ISI GRAPH (ADJACENCY LIST)" << endl;
 
-void printInfo(List L) {
-    address P = L.first;
-    while (P != NIL) {
-        cout << "Nomor Polisi : " << P->info.nopol << endl;
-        cout << "Warna        : " << P->info.warna << endl;
-        cout << "Tahun        : " << P->info.tahunbuat << endl;
+    adrNode P = G.first;
+    while (P != NULL) {
+        cout << "Node " << P->info;
+        adrEdge E = P->firstEdge;
+        while (E != NULL) {
+            cout << " -> " << E->node->info;
+            E = E->next;
+        }
         cout << endl;
         P = P->next;
-    }
-}
-
-address findElm(List L, string nopol) {
-    address P = L.first;
-    while (P != NIL) {
-        if (P->info.nopol == nopol) return P;
-        P = P->next;
-    }
-    return NIL;
-}
-
-void deleteFirst(List &L) {
-    if (L.first != NIL) {
-        address P = L.first;
-
-        if (L.first == L.last) {
-            L.first = L.last = NIL;
-        } else {
-            L.first = P->next;
-            L.first->prev = NIL;
-        }
-        dealokasi(P);
-    }
-}
-
-void deleteLast(List &L) {
-    if (L.first != NIL) {
-        address P = L.last;
-
-        if (L.first == L.last) {
-            L.first = L.last = NIL;
-        } else {
-            L.last = P->prev;
-            L.last->next = NIL;
-        }
-        dealokasi(P);
-    }
-}
-
-void deleteAfter(List &L, address Prec) {
-    if (Prec != NIL && Prec->next != NIL) {
-        address P = Prec->next;
-        Prec->next = P->next;
-        if (P->next != NIL) {
-            P->next->prev = Prec;
-        } else {
-            L.last = Prec;
-        }
-        dealokasi(P);
     }
 }
 ```
 ### 3. [main.cpp]
 
 ```C++
-#include "doublelist.h"
+#include "graph.h"
 
 int main() {
-    List L;
-    CreateList(L);
+    Graph G;
+    CreateGraph(G);
 
-    infotype x;
-    address P;
-    string nopolInput;
+    adrNode A = InsertNode(G, 'A');
+    adrNode B = InsertNode(G, 'B');
+    adrNode C = InsertNode(G, 'C');
+    adrNode D = InsertNode(G, 'D');
+    adrNode E = InsertNode(G, 'E');
+    adrNode F = InsertNode(G, 'F');
+    adrNode Gg = InsertNode(G, 'G');
+    adrNode H = InsertNode(G, 'H');
 
-    // Input 4 kali sesuai contoh modul
-    for (int i = 0; i < 4; i++) {
-        cout << "masukkan nomor polisi: ";
-        cin >> x.nopol;
+    ConnectNode(A, B);
+    ConnectNode(A, C);
 
-        // Cek duplikasi
-        if (findElm(L, x.nopol) != NIL) {
-            cout << "nomor polisi sudah terdaftar\n\n";
-            // skip input warna/tahun kalau dupe
-            continue;
+    ConnectNode(B, D);
+    ConnectNode(B, E);
+
+    ConnectNode(C, F);
+    ConnectNode(C, Gg);
+
+    ConnectNode(D, H);
+    ConnectNode(E, H);
+    ConnectNode(F, H);
+    ConnectNode(Gg, H);
+
+    PrintInfoGraph(G);
+    return 0;
+}
+```
+
+#### Output:
+<img width="459" height="236" alt="image" src="https://github.com/user-attachments/assets/360b9c6f-db1b-4b9f-8c15-de96d84ae06b" />
+
+Program ini membuat graph tidak berarah dengan representasi Adjacency List menggunakan Multi Linked List. Graph terdiri dari node dan edge untuk menunjukkan keterhubungan antar simpul. Program mendukung penambahan node, penghubungan dua arah antar node, serta penampilan struktur graph dalam bentuk adjacency list.
+
+#### Full code Screenshot:
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/3659211f-33fe-4ec0-b165-bebc05beb237" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/24326c20-51e9-4a48-903c-6dabdd5f3ddf" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/61243aaa-62af-4bcb-b716-a13ffcc24d26" />
+
+### Soal 2
+### 1. [graph.h]
+
+```C++
+#ifndef GRAPH_H
+#define GRAPH_H
+
+#include <iostream>
+using namespace std;
+
+typedef char infoGraph;
+typedef struct ElmNode *adrNode;
+typedef struct ElmEdge *adrEdge;
+
+struct ElmEdge {
+    adrNode node;
+    adrEdge next;
+};
+
+struct ElmNode {
+    infoGraph info;
+    int visited;
+    adrEdge firstEdge;
+    adrNode next;
+};
+
+struct Graph {
+    adrNode first;
+};
+
+void CreateGraph(Graph &G);
+adrNode InsertNode(Graph &G, infoGraph x);
+void ConnectNode(adrNode N1, adrNode N2);
+void PrintInfoGraph(Graph G);
+void PrintDFS(Graph G, adrNode N);   
+
+#endif
+```
+### 2. [graph.cpp]
+```C++
+#include "graph.h"
+
+void CreateGraph(Graph &G) {
+    G.first = NULL;
+}
+
+adrNode InsertNode(Graph &G, infoGraph x) {
+    adrNode P = new ElmNode;
+    P->info = x;
+    P->visited = 0;
+    P->firstEdge = NULL;
+    P->next = NULL;
+
+    if (G.first == NULL) {
+        G.first = P;
+    } else {
+        adrNode Q = G.first;
+        while (Q->next != NULL) {
+            Q = Q->next;
         }
+        Q->next = P;
+    }
+    return P;
+}
 
-        cout << "masukkan warna kendaraan: ";
-        cin >> x.warna;
+void ConnectNode(adrNode N1, adrNode N2) {
+    adrEdge E1 = new ElmEdge;
+    E1->node = N2;
+    E1->next = N1->firstEdge;
+    N1->firstEdge = E1;
 
-        cout << "masukkan tahun kendaraan: ";
-        cin >> x.tahunbuat;
+    adrEdge E2 = new ElmEdge;
+    E2->node = N1;
+    E2->next = N2->firstEdge;
+    N2->firstEdge = E2;
+}
 
+void PrintInfoGraph(Graph G) {
+    cout << "ISI GRAPH (ADJACENCY LIST)" << endl;
+
+    adrNode P = G.first;
+    while (P != NULL) {
+        cout << "Node " << P->info;
+        adrEdge E = P->firstEdge;
+        while (E != NULL) {
+            cout << " -> " << E->node->info;
+            E = E->next;
+        }
         cout << endl;
-
-        P = alokasi(x);
-        insertLast(L, P);
+        P = P->next;
     }
+}
 
-    cout << "DATA LIST 1\n";
-    printInfo(L);
-    cout << endl;
+void PrintDFS(Graph G, adrNode N) {
+    if (N == NULL) return;
 
+    N->visited = 1;
+    cout << N->info << " ";
 
-    // ===== SOAL NOMOR 2 : Find D001 =====
-    cout << "Masukkan Nomor Polisi yang dicari : ";
-    cin >> nopolInput;
-
-    address found = findElm(L, nopolInput);
-    if (found != NIL) {
-        cout << "Nomor Polisi : " << found->info.nopol << endl;
-        cout << "Warna        : " << found->info.warna << endl;
-        cout << "Tahun        : " << found->info.tahunbuat << endl;
-    } else {
-        cout << "Data tidak ditemukan.\n";
-    }
-
-    cout << endl;
-
-
-    // ===== SOAL NOMOR 3 : Hapus =====
-    cout << "Masukkan Nomor Polisi yang akan dihapus : ";
-    cin >> nopolInput;
-
-    address target = findElm(L, nopolInput);
-
-    if (target != NIL) {
-        if (target == L.first) {
-            deleteFirst(L);
-        } else if (target == L.last) {
-            deleteLast(L);
-        } else {
-            deleteAfter(L, target->prev);
+    adrEdge E = N->firstEdge;
+    while (E != NULL) {
+        if (E->node->visited == 0) {
+            PrintDFS(G, E->node);
         }
-        cout << "Data dengan nomor polisi " << nopolInput << " berhasil dihapus.\n";
-    } else {
-        cout << "Data tidak ditemukan.\n";
+        E = E->next;
     }
+}
+```
+### 3. [main.cpp]
 
-    cout << "\nDATA LIST 1\n";
-    printInfo(L);
+```C++
+#include "graph.h"
+
+int main() {
+    Graph G;
+    CreateGraph(G);
+
+    adrNode A = InsertNode(G, 'A');
+    adrNode B = InsertNode(G, 'B');
+    adrNode C = InsertNode(G, 'C');
+    adrNode D = InsertNode(G, 'D');
+    adrNode E = InsertNode(G, 'E');
+    adrNode F = InsertNode(G, 'F');
+    adrNode Gg = InsertNode(G, 'G');
+    adrNode H = InsertNode(G, 'H');
+
+    ConnectNode(A, B);
+    ConnectNode(A, C);
+
+    ConnectNode(B, D);
+    ConnectNode(B, E);
+
+    ConnectNode(C, F);
+    ConnectNode(C, Gg);
+
+    ConnectNode(D, H);
+    ConnectNode(E, H);
+    ConnectNode(F, H);
+    ConnectNode(Gg, H);
+
+    PrintInfoGraph(G);
+
+    cout << endl << "HASIL DFS: ";
+    PrintDFS(G, A);
 
     return 0;
 }
 ```
 
 #### Output:
-<img width="1020" height="920" alt="image" src="https://github.com/user-attachments/assets/ead53e62-fdab-42d5-84a6-fa2a90b31401" />
+<img width="478" height="253" alt="image" src="https://github.com/user-attachments/assets/69c6fbea-6b83-47d1-914e-12f5eec9a6d2" />
 
+Program ini digunakan untuk mengimplementasikan ADT Graph menggunakan adjacency list serta melakukan penelusuran graf dengan metode Depth First Search (DFS) untuk menampilkan urutan kunjungan simpul dari suatu titik awal.
 
-
-Program ini dibuat untuk mengelola data kendaraan menggunakan Doubly Linked List.
-Setiap node menyimpan nomor polisi, warna kendaraan, dan tahun pembuatan.
-Program dapat melakukan:
-- menambah data kendaraan ke belakang list (insertLast)
-- menampilkan seluruh data (printInfo)
-- mengecek apakah nopol sudah terdaftar (findElm)
-- mencari data kendaraan tertentu
-- menghapus data berdasarkan posisi (deleteFirst, deleteLast, deleteAfter)
-- menolak input kendaraan dengan nopol yang sama (duplikasi)
-Program ini mensimulasikan cara kerja struktur data Double Linked List untuk pengolahan data kendaraan secara dinamis.
 #### Full code Screenshot:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/cb3d1f32-c50b-487f-b408-ae51c39b75b6" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/36736a99-690e-4a08-9577-91c2fb2bb00f" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/362d23f7-1a6d-48df-851b-5f8361dffdda" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/56049d06-ac19-4116-a74d-6a0a1ba45846" />
 
-<img width="1917" height="1079" alt="image" src="https://github.com/user-attachments/assets/cae371a4-c2bb-432e-a55a-fcb7a56fb7ca" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/b86371e9-14ca-472f-88ef-14179cf6392e" />
 
-## Soal 2
-## Soal 3
+### Soal 3
+### 1. [graph.h]
+
+```C++
+#ifndef GRAPH_H
+#define GRAPH_H
+
+#include <iostream>
+using namespace std;
+
+typedef char infoGraph;
+typedef struct ElmNode *adrNode;
+typedef struct ElmEdge *adrEdge;
+
+struct ElmEdge {
+    adrNode node;
+    adrEdge next;
+};
+
+struct ElmNode {
+    infoGraph info;
+    int visited;
+    adrEdge firstEdge;
+    adrNode next;
+};
+
+struct Graph {
+    adrNode first;
+};
+
+void CreateGraph(Graph &G);
+adrNode InsertNode(Graph &G, infoGraph x);
+void ConnectNode(adrNode N1, adrNode N2);
+void PrintInfoGraph(Graph G);
+void PrintDFS(Graph G, adrNode N);   
+void ResetVisited(Graph &G);
+void PrintBFS(Graph G, adrNode N);
+
+
+#endif
+```
+### 2. [graph.cpp]
+
+```C++
+#include "graph.h"
+
+void CreateGraph(Graph &G) {
+    G.first = NULL;
+}
+
+adrNode InsertNode(Graph &G, infoGraph x) {
+    adrNode P = new ElmNode;
+    P->info = x;
+    P->visited = 0;
+    P->firstEdge = NULL;
+    P->next = NULL;
+
+    if (G.first == NULL) {
+        G.first = P;
+    } else {
+        adrNode Q = G.first;
+        while (Q->next != NULL) {
+            Q = Q->next;
+        }
+        Q->next = P;
+    }
+    return P;
+}
+
+void ConnectNode(adrNode N1, adrNode N2) {
+    adrEdge E1 = new ElmEdge;
+    E1->node = N2;
+    E1->next = N1->firstEdge;
+    N1->firstEdge = E1;
+
+    adrEdge E2 = new ElmEdge;
+    E2->node = N1;
+    E2->next = N2->firstEdge;
+    N2->firstEdge = E2;
+}
+
+void PrintInfoGraph(Graph G) {
+    cout << "ISI GRAPH (ADJACENCY LIST)" << endl;
+
+    adrNode P = G.first;
+    while (P != NULL) {
+        cout << "Node " << P->info;
+        adrEdge E = P->firstEdge;
+        while (E != NULL) {
+            cout << " -> " << E->node->info;
+            E = E->next;
+        }
+        cout << endl;
+        P = P->next;
+    }
+}
+
+void PrintDFS(Graph G, adrNode N) {
+    if (N == NULL) return;
+
+    N->visited = 1;
+    cout << N->info << " ";
+
+    adrEdge E = N->firstEdge;
+    while (E != NULL) {
+        if (E->node->visited == 0) {
+            PrintDFS(G, E->node);
+        }
+        E = E->next;
+    }
+}
+    
+void ResetVisited(Graph &G) {
+    adrNode P = G.first;
+    while (P != NULL) {
+        P->visited = 0;
+        P = P->next;
+    }
+}
+
+
+void PrintBFS(Graph G, adrNode N) {
+    if (N == NULL) return;
+
+    adrNode Q[100];
+    int front = 0, rear = 0;
+
+    N->visited = 1;
+    Q[rear++] = N;
+
+    while (front < rear) {
+        adrNode P = Q[front++];
+        cout << P->info << " ";
+
+        adrEdge E = P->firstEdge;
+        while (E != NULL) {
+            if (E->node->visited == 0) {
+                E->node->visited = 1;
+                Q[rear++] = E->node;
+            }
+            E = E->next;
+        }
+    }
+}
+```
+### 3. [main.cpp]
+
+```C++
+#include "graph.h"
+
+int main() {
+    Graph G;
+    CreateGraph(G);
+
+    adrNode A = InsertNode(G, 'A');
+    adrNode B = InsertNode(G, 'B');
+    adrNode C = InsertNode(G, 'C');
+    adrNode D = InsertNode(G, 'D');
+    adrNode E = InsertNode(G, 'E');
+    adrNode F = InsertNode(G, 'F');
+    adrNode Gg = InsertNode(G, 'G');
+    adrNode H = InsertNode(G, 'H');
+
+    ConnectNode(A, B);
+    ConnectNode(A, C);
+
+    ConnectNode(B, D);
+    ConnectNode(B, E);
+
+    ConnectNode(C, F);
+    ConnectNode(C, Gg);
+
+    ConnectNode(D, H);
+    ConnectNode(E, H);
+    ConnectNode(F, H);
+    ConnectNode(Gg, H);
+
+    PrintInfoGraph(G);
+
+    cout << endl << "HASIL DFS: ";
+    PrintDFS(G, A);
+
+    ResetVisited(G);
+
+    cout << endl << "HASIL BFS: ";
+    PrintBFS(G, A);
+
+    return 0;
+}
+```
+
+#### Output:
+<img width="534" height="275" alt="image" src="https://github.com/user-attachments/assets/4cf4e7d7-acb8-47d6-8df9-5c42d79e6748" />
+
+Program ini digunakan untuk menampilkan hasil penelusuran graph menggunakan metode Breadth First Search (BFS), yaitu mengunjungi simpul berdasarkan tingkat (level) dari simpul awal dengan memanfaatkan struktur data queue.
+
+#### Full code Screenshot:
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/887c01cf-296c-4e9b-90d3-69a105d2fa5b" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/511a25f9-69a0-4ae7-a9cc-c9c0b9e73d66" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/85a5e07b-d8ce-4f3f-ba8c-ba4ecb2d37db" />
+
 ## Kesimpulan
 Ringkasan dan interpretasi pandangan kalian dari hasil praktikum dan pembelajaran yang didapat[1]. Modul 7 pada modul ini materi yang di sampaikan itu tentang stack, Stack adalah struktur data yang bekerja dengan dengan prinsip LIFO (Last in First Out), jadi node yang terakhir masuk akan keluar paling awal, latihan ini membantu memahami cara kerja stack secara praktis, dengan mengimplementasi kan banyak operasi, jadi dapat memahami bagaimana cara stack itu digunakan untuk mengatur data yang masuk dan kelaur secara teratur serta dapat memecahkan masalah menggunakan LIFO
-
-
 
 ## Referensi
 [1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
