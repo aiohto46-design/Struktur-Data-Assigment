@@ -809,7 +809,7 @@ int main() {
 #### Output:
 <img width="477" height="134" alt="image" src="https://github.com/user-attachments/assets/233e54b9-9190-4a9c-b6a3-030d850c3706" />
 
-Program ini digunakan untuk mengelola data integer menggunakan struktur Binary Search Tree (BST). Data disimpan secara terurut, dan ditampilkan dalam urutan menaik menggunakan traversal InOrder.
+Program ini digunakan untuk mengimplementasikan struktur data Binary Search Tree (BST) dan menampilkan hasil penelusuran tree menggunakan metode traversal pre-order, in-order, dan post-order. Data dimasukkan ke dalam BST sesuai aturan kiri lebih kecil dan kanan lebih besar dari root, kemudian traversal dilakukan untuk menampilkan urutan node sesuai metode yang diminta.
 
 #### Full code Screenshot:
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/47104a59-2200-4c1e-be10-1028d46c5f5e" />
@@ -818,10 +818,9 @@ Program ini digunakan untuk mengelola data integer menggunakan struktur Binary S
 
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/4a0f309b-d51e-4db2-b0f7-b11e70f2aa4a" />
 
+
 ## Kesimpulan
-Ringkasan dan interpretasi pandangan kalian dari hasil praktikum dan pembelajaran yang didapat[1]. Modul 10 pada modul ini materi yang di sampaikan itu tentang Binary search Tree, Melalui praktikum Binary Search Tree (BST), mendapatkan pemahaman tentang struktur data tree dan penerapan rekursi dalam proses insert, search, traversal, dan delete. Praktikum ini menunjukkan bahwa BST mempermudah pengelolaan data secara terurut dan efisien. Selain itu, pembelajaran ini meningkatkan pemahaman tentang struktur data non-linear dan pemrograman yang modular.
-
-
+Berdasarkan hasil praktikum dan pembelajaran pada Modul 10, materi yang dipelajari berfokus pada Binary Search Tree (BST). Melalui praktikum ini, diperoleh pemahaman mengenai struktur data tree serta penerapan konsep rekursi dalam proses insert, search, traversal, dan delete. Hasil praktikum menunjukkan bahwa BST memudahkan pengelolaan data secara terurut dengan efisien. Selain itu, pembelajaran ini juga meningkatkan pemahaman terhadap struktur data non-linear serta penerapan pemrograman yang bersifat modular.
 
 ## Referensi
 [1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
