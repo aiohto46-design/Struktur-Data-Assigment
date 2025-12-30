@@ -681,20 +681,28 @@ Program ini digunakan untuk menyimpan dan mengolah data angka menggunakan Binary
 using namespace std;
 
 struct Node {
-    int info;
-    Node *left;
-    Node *right;
+    int data;
+    Node* left;
+    Node* right;
 };
 
-typedef Node* address;
+class BSTree {
+private:
+    Node* root;
 
-address createNode(int x);
-void insertNode(address &root, int x);
-void inOrder(address root);
+    Node* insert(Node* node, int value);
+    void preOrder(Node* node);
+    void inOrder(Node* node);
+    void postOrder(Node* node);
 
-int hitungJumlahNode(address root);
-int hitungTotal(address root);
-int hitungKedalaman(address root);
+public:
+    BSTree();
+    void insert(int value);
+
+    void printPreOrder();
+    void printInOrder();
+    void printPostOrder();
+};
 
 #endif
 ```
@@ -702,52 +710,68 @@ int hitungKedalaman(address root);
 ```C++
 #include "bstree.h"
 
-address createNode(int x) {
-    address p = new Node;
-    p->info = x;
-    p->left = NULL;
-    p->right = NULL;
-    return p;
+BSTree::BSTree() {
+    root = nullptr;
 }
 
-void insertNode(address &root, int x) {
-    if (root == NULL) {
-        root = createNode(x);
-    } else if (x < root->info) {
-        insertNode(root->left, x);
-    } else if (x > root->info) {
-        insertNode(root->right, x);
+Node* BSTree::insert(Node* node, int value) {
+    if (node == nullptr) {
+        Node* newNode = new Node;
+        newNode->data = value;
+        newNode->left = nullptr;
+        newNode->right = nullptr;
+        return newNode;
+    }
+
+    if (value < node->data)
+        node->left = insert(node->left, value);
+    else
+        node->right = insert(node->right, value);
+
+    return node;
+}
+
+void BSTree::insert(int value) {
+    root = insert(root, value);
+}
+
+void BSTree::preOrder(Node* node) {
+    if (node != nullptr) {
+        cout << node->data << " ";
+        preOrder(node->left);
+        preOrder(node->right);
     }
 }
 
-void inOrder(address root) {
-    if (root != NULL) {
-        inOrder(root->left);
-        cout << root->info << " - ";
-        inOrder(root->right);
+void BSTree::inOrder(Node* node) {
+    if (node != nullptr) {
+        inOrder(node->left);
+        cout << node->data << " ";
+        inOrder(node->right);
     }
 }
 
-int hitungJumlahNode(address root) {
-    if (root == NULL)
-        return 0;
-    return 1 + hitungJumlahNode(root->left) + hitungJumlahNode(root->right);
+void BSTree::postOrder(Node* node) {
+    if (node != nullptr) {
+        postOrder(node->left);
+        postOrder(node->right);
+        cout << node->data << " ";
+    }
 }
 
-int hitungTotal(address root) {
-    if (root == NULL)
-        return 0;
-    return root->info + hitungTotal(root->left) + hitungTotal(root->right);
+void BSTree::printPreOrder() {
+    preOrder(root);
+    cout << endl;
 }
 
-int hitungKedalaman(address root) {
-    if (root == NULL)
-        return 0;
+void BSTree::printInOrder() {
+    inOrder(root);
+    cout << endl;
+}
 
-    int kiri = hitungKedalaman(root->left);
-    int kanan = hitungKedalaman(root->right);
-
-    return (kiri > kanan ? kiri : kanan) + 1;
+void BSTree::printPostOrder() {
+    postOrder(root);
+    cout << endl;
 }
 ```
 ### 3. [main.cpp]
@@ -758,40 +782,41 @@ int hitungKedalaman(address root) {
 using namespace std;
 
 int main() {
-    address root = NULL;
+    BSTree tree;
 
-    insertNode(root, 1);
-    insertNode(root, 2);
-    insertNode(root, 6);
-    insertNode(root, 4);
-    insertNode(root, 5);
-    insertNode(root, 3);
-    insertNode(root, 6);
-    insertNode(root, 7);
+    tree.insert(6);
+    tree.insert(4);
+    tree.insert(7);
+    tree.insert(2);
+    tree.insert(5);
+    tree.insert(1);
+    tree.insert(3);
 
-    cout << "Hello world!" << endl;
-    inOrder(root);
-    cout << endl;
+    cout << "Pre-order traversal : ";
+    tree.printPreOrder();
 
-    cout << "kedalaman : " << hitungKedalaman(root) << endl;
-    cout << "jumlah node : " << hitungJumlahNode(root) << endl;
-    cout << "total : " << hitungTotal(root) << endl;
+    cout << "In-order traversal  : ";
+    tree.printInOrder();
+
+    cout << "Post-order traversal: ";
+    tree.printPostOrder();
 
     return 0;
 }
+
 ```
 
 #### Output:
-<img width="336" height="154" alt="image" src="https://github.com/user-attachments/assets/d674a439-de38-4bc1-a60a-670e2192de5f" />
+<img width="477" height="134" alt="image" src="https://github.com/user-attachments/assets/233e54b9-9190-4a9c-b6a3-030d850c3706" />
 
 Program ini digunakan untuk mengelola data integer menggunakan struktur Binary Search Tree (BST). Data disimpan secara terurut, dan ditampilkan dalam urutan menaik menggunakan traversal InOrder.
 
 #### Full code Screenshot:
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7b2254c0-19be-4a88-b770-6a5a9eb0e649" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/47104a59-2200-4c1e-be10-1028d46c5f5e" />
 
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/4c3476cc-6303-44eb-a724-7e5139fed829" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/05ab747f-47a3-498b-90ca-1c2f9e64312b" />
 
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/956f8f2f-7c8d-4cd1-90bc-ae9b29ebc463" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/4a0f309b-d51e-4db2-b0f7-b11e70f2aa4a" />
 
 ## Kesimpulan
 Ringkasan dan interpretasi pandangan kalian dari hasil praktikum dan pembelajaran yang didapat[1]. Modul 10 pada modul ini materi yang di sampaikan itu tentang Binary search Tree, Melalui praktikum Binary Search Tree (BST), mendapatkan pemahaman tentang struktur data tree dan penerapan rekursi dalam proses insert, search, traversal, dan delete. Praktikum ini menunjukkan bahwa BST mempermudah pengelolaan data secara terurut dan efisien. Selain itu, pembelajaran ini meningkatkan pemahaman tentang struktur data non-linear dan pemrograman yang modular.
