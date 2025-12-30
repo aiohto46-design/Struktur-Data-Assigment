@@ -438,242 +438,361 @@ int main() {
 Merupakan file program utama yang berisi fungsi main() beserta menu interaktif. File ini berperan sebagai antarmuka pengguna untuk memanggil fungsi-fungsi BST yang didefinisikan pada bst.cpp melalui bst.h. Melalui menu yang tersedia, pengguna dapat melakukan operasi seperti insert, delete, search, traversal, serta operasi BST lainnya.
 
 ## Unguided 
+
 ## SOAL 1
 ### 1. [bstree.h]
 
 ```C++
-#ifndef DOUBLELIST_H
-#define DOUBLELIST_H
-#define NIL NULL
+#ifndef BSTREE_H
+#define BSTREE_H
+
 #include <iostream>
 using namespace std;
 
-struct kendaraan {
-    string nopol;
-    string warna;
-    int tahunbuat;
-};
+typedef int infotype;
+typedef struct Node* address;
 
-typedef kendaraan infotype;
-typedef struct ElmtList *address;
-
-struct ElmtList {
+struct Node {
     infotype info;
-    address next;
-    address prev;
+    address left;
+    address right;
 };
 
-struct List {
-    address first;
-    address last;
-};
-
-void CreateList(List &L);
 address alokasi(infotype x);
-void dealokasi(address &P);
-void insertLast(List &L, address P);
-void printInfo(List L);
-address findElm(List L, string nopol);
-void deleteFirst(List &L);
-void deleteLast(List &L);
-void deleteAfter(List &L, address Prec);
+void insertNode(address &root, infotype x);
+address findNode(infotype x, address root);
+void printInOrder(address root);
 
 #endif
 ```
 ### 2. [bstree.cpp]
 ```C++
-#include "doublelist.h"
-
-void CreateList(List &L) {
-    L.first = NIL;
-    L.last = NIL;
-}
+#include "bstree.h"
 
 address alokasi(infotype x) {
-    address P = new ElmtList;
-    P->info = x;
-    P->next = NIL;
-    P->prev = NIL;
-    return P;
+    address p = new Node;
+    p->info = x;
+    p->left = NULL;
+    p->right = NULL;
+    return p;
 }
 
-void dealokasi(address &P) {
-    delete P;
-    P = NIL;
-}
-
-void insertLast(List &L, address P) {
-    if (L.first == NIL) {
-        L.first = P;
-        L.last = P;
+void insertNode(address &root, infotype x) {
+    if (root == NULL) {
+        root = alokasi(x);
     } else {
-        L.last->next = P;
-        P->prev = L.last;
-        L.last = P;
-    }
-}
-
-void printInfo(List L) {
-    address P = L.first;
-    while (P != NIL) {
-        cout << "Nomor Polisi : " << P->info.nopol << endl;
-        cout << "Warna        : " << P->info.warna << endl;
-        cout << "Tahun        : " << P->info.tahunbuat << endl;
-        cout << endl;
-        P = P->next;
-    }
-}
-
-address findElm(List L, string nopol) {
-    address P = L.first;
-    while (P != NIL) {
-        if (P->info.nopol == nopol) return P;
-        P = P->next;
-    }
-    return NIL;
-}
-
-void deleteFirst(List &L) {
-    if (L.first != NIL) {
-        address P = L.first;
-
-        if (L.first == L.last) {
-            L.first = L.last = NIL;
-        } else {
-            L.first = P->next;
-            L.first->prev = NIL;
+        if (x < root->info) {
+            insertNode(root->left, x);
+        } else if (x > root->info) {
+            insertNode(root->right, x);
         }
-        dealokasi(P);
     }
 }
 
-void deleteLast(List &L) {
-    if (L.first != NIL) {
-        address P = L.last;
-
-        if (L.first == L.last) {
-            L.first = L.last = NIL;
-        } else {
-            L.last = P->prev;
-            L.last->next = NIL;
-        }
-        dealokasi(P);
+address findNode(infotype x, address root) {
+    if (root == NULL || root->info == x) {
+        return root;
+    } else if (x < root->info) {
+        return findNode(x, root->left);
+    } else {
+        return findNode(x, root->right);
     }
 }
 
-void deleteAfter(List &L, address Prec) {
-    if (Prec != NIL && Prec->next != NIL) {
-        address P = Prec->next;
-        Prec->next = P->next;
-        if (P->next != NIL) {
-            P->next->prev = Prec;
-        } else {
-            L.last = Prec;
-        }
-        dealokasi(P);
+void printInOrder(address root) {
+    if (root != NULL) {
+        printInOrder(root->left);
+        cout << root->info << " ";
+        printInOrder(root->right);
     }
 }
 ```
 ### 3. [main.cpp]
 
 ```C++
-#include "doublelist.h"
+#include <iostream>
+#include "bstree.h"
+
+using namespace std;
 
 int main() {
-    List L;
-    CreateList(L);
+    cout << "Hello World!" << endl;
 
-    infotype x;
-    address P;
-    string nopolInput;
+    address root = NULL;
 
-    // Input 4 kali sesuai contoh modul
-    for (int i = 0; i < 4; i++) {
-        cout << "masukkan nomor polisi: ";
-        cin >> x.nopol;
+    insertNode(root, 1);
+    insertNode(root, 2);
+    insertNode(root, 4);
+    insertNode(root, 3);
+    insertNode(root, 5);
+    insertNode(root, 6);
+    insertNode(root, 7);
 
-        // Cek duplikasi
-        if (findElm(L, x.nopol) != NIL) {
-            cout << "nomor polisi sudah terdaftar\n\n";
-            // skip input warna/tahun kalau dupe
-            continue;
-        }
-
-        cout << "masukkan warna kendaraan: ";
-        cin >> x.warna;
-
-        cout << "masukkan tahun kendaraan: ";
-        cin >> x.tahunbuat;
-
-        cout << endl;
-
-        P = alokasi(x);
-        insertLast(L, P);
-    }
-
-    cout << "DATA LIST 1\n";
-    printInfo(L);
-    cout << endl;
-
-
-    // ===== SOAL NOMOR 2 : Find D001 =====
-    cout << "Masukkan Nomor Polisi yang dicari : ";
-    cin >> nopolInput;
-
-    address found = findElm(L, nopolInput);
-    if (found != NIL) {
-        cout << "Nomor Polisi : " << found->info.nopol << endl;
-        cout << "Warna        : " << found->info.warna << endl;
-        cout << "Tahun        : " << found->info.tahunbuat << endl;
-    } else {
-        cout << "Data tidak ditemukan.\n";
-    }
-
-    cout << endl;
-
-
-    // ===== SOAL NOMOR 3 : Hapus =====
-    cout << "Masukkan Nomor Polisi yang akan dihapus : ";
-    cin >> nopolInput;
-
-    address target = findElm(L, nopolInput);
-
-    if (target != NIL) {
-        if (target == L.first) {
-            deleteFirst(L);
-        } else if (target == L.last) {
-            deleteLast(L);
-        } else {
-            deleteAfter(L, target->prev);
-        }
-        cout << "Data dengan nomor polisi " << nopolInput << " berhasil dihapus.\n";
-    } else {
-        cout << "Data tidak ditemukan.\n";
-    }
-
-    cout << "\nDATA LIST 1\n";
-    printInfo(L);
+    printInOrder(root);
 
     return 0;
 }
 ```
 
 #### Output:
-<img width="1020" height="920" alt="image" src="https://github.com/user-attachments/assets/ead53e62-fdab-42d5-84a6-fa2a90b31401" />
+<img width="481" height="91" alt="image" src="https://github.com/user-attachments/assets/71d17a8d-54ae-4b41-a0b6-154dd5757b31" />
 
-Program ini dibuat untuk mengelola data kendaraan menggunakan Doubly Linked List.
-Setiap node menyimpan nomor polisi, warna kendaraan, dan tahun pembuatan.
+Program ini digunakan untuk mengelola data integer menggunakan struktur Binary Search Tree (BST). Data disimpan secara terurut, dan ditampilkan dalam urutan menaik menggunakan traversal InOrder.
 
 #### Full code Screenshot:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/cb3d1f32-c50b-487f-b408-ae51c39b75b6" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/0ea9f697-31b9-4b8d-88a1-f58377d39923" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/362d23f7-1a6d-48df-851b-5f8361dffdda" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/bdd098d5-e9ee-47f5-a67e-b46a7b880e18" />
 
-<img width="1917" height="1079" alt="image" src="https://github.com/user-attachments/assets/cae371a4-c2bb-432e-a55a-fcb7a56fb7ca" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/01193558-f501-4c8a-b753-d9fa82a472b0" />
 
 ## SOAL 2
+### 1. [bstree.h]
+
+```C++
+#ifndef BSTREE_H
+#define BSTREE_H
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int info;
+    Node *left;
+    Node *right;
+};
+
+typedef Node* address;
+
+address createNode(int x);
+void insertNode(address &root, int x);
+void inOrder(address root);
+
+int hitungJumlahNode(address root);
+int hitungTotal(address root);
+int hitungKedalaman(address root);
+
+#endif
+```
+### 2. [bstree.cpp]
+```C++
+#include "bstree.h"
+
+address createNode(int x) {
+    address p = new Node;
+    p->info = x;
+    p->left = NULL;
+    p->right = NULL;
+    return p;
+}
+
+void insertNode(address &root, int x) {
+    if (root == NULL) {
+        root = createNode(x);
+    } else if (x < root->info) {
+        insertNode(root->left, x);
+    } else if (x > root->info) {
+        insertNode(root->right, x);
+    }
+}
+
+void inOrder(address root) {
+    if (root != NULL) {
+        inOrder(root->left);
+        cout << root->info << " - ";
+        inOrder(root->right);
+    }
+}
+
+int hitungJumlahNode(address root) {
+    if (root == NULL)
+        return 0;
+    return 1 + hitungJumlahNode(root->left) + hitungJumlahNode(root->right);
+}
+
+int hitungTotal(address root) {
+    if (root == NULL)
+        return 0;
+    return root->info + hitungTotal(root->left) + hitungTotal(root->right);
+}
+
+int hitungKedalaman(address root) {
+    if (root == NULL)
+        return 0;
+
+    int kiri = hitungKedalaman(root->left);
+    int kanan = hitungKedalaman(root->right);
+
+    return (kiri > kanan ? kiri : kanan) + 1;
+}
+```
+### 3. [main.cpp]
+
+```C++
+#include <iostream>
+#include "bstree.h"
+using namespace std;
+
+int main() {
+    address root = NULL;
+
+    insertNode(root, 1);
+    insertNode(root, 2);
+    insertNode(root, 6);
+    insertNode(root, 4);
+    insertNode(root, 5);
+    insertNode(root, 3);
+    insertNode(root, 6);
+    insertNode(root, 7);
+
+    cout << "Hello world!" << endl;
+    inOrder(root);
+    cout << endl;
+
+    cout << "kedalaman : " << hitungKedalaman(root) << endl;
+    cout << "jumlah node : " << hitungJumlahNode(root) << endl;
+    cout << "total : " << hitungTotal(root) << endl;
+
+    return 0;
+}
+```
+
+#### Output:
+<img width="336" height="154" alt="image" src="https://github.com/user-attachments/assets/d674a439-de38-4bc1-a60a-670e2192de5f" />
+
+Program ini digunakan untuk menyimpan dan mengolah data angka menggunakan Binary Search Tree (BST). Program menampilkan data secara terurut serta menghitung kedalaman tree, jumlah node, dan total nilai node.
+
+#### Full code Screenshot:
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7b2254c0-19be-4a88-b770-6a5a9eb0e649" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/4c3476cc-6303-44eb-a724-7e5139fed829" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/956f8f2f-7c8d-4cd1-90bc-ae9b29ebc463" />
+
 
 ## SOAL 3
+### 1. [bstree.h]
+
+```C++
+#ifndef BSTREE_H
+#define BSTREE_H
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int info;
+    Node *left;
+    Node *right;
+};
+
+typedef Node* address;
+
+address createNode(int x);
+void insertNode(address &root, int x);
+void inOrder(address root);
+
+int hitungJumlahNode(address root);
+int hitungTotal(address root);
+int hitungKedalaman(address root);
+
+#endif
+```
+### 2. [bstree.cpp]
+```C++
+#include "bstree.h"
+
+address createNode(int x) {
+    address p = new Node;
+    p->info = x;
+    p->left = NULL;
+    p->right = NULL;
+    return p;
+}
+
+void insertNode(address &root, int x) {
+    if (root == NULL) {
+        root = createNode(x);
+    } else if (x < root->info) {
+        insertNode(root->left, x);
+    } else if (x > root->info) {
+        insertNode(root->right, x);
+    }
+}
+
+void inOrder(address root) {
+    if (root != NULL) {
+        inOrder(root->left);
+        cout << root->info << " - ";
+        inOrder(root->right);
+    }
+}
+
+int hitungJumlahNode(address root) {
+    if (root == NULL)
+        return 0;
+    return 1 + hitungJumlahNode(root->left) + hitungJumlahNode(root->right);
+}
+
+int hitungTotal(address root) {
+    if (root == NULL)
+        return 0;
+    return root->info + hitungTotal(root->left) + hitungTotal(root->right);
+}
+
+int hitungKedalaman(address root) {
+    if (root == NULL)
+        return 0;
+
+    int kiri = hitungKedalaman(root->left);
+    int kanan = hitungKedalaman(root->right);
+
+    return (kiri > kanan ? kiri : kanan) + 1;
+}
+```
+### 3. [main.cpp]
+
+```C++
+#include <iostream>
+#include "bstree.h"
+using namespace std;
+
+int main() {
+    address root = NULL;
+
+    insertNode(root, 1);
+    insertNode(root, 2);
+    insertNode(root, 6);
+    insertNode(root, 4);
+    insertNode(root, 5);
+    insertNode(root, 3);
+    insertNode(root, 6);
+    insertNode(root, 7);
+
+    cout << "Hello world!" << endl;
+    inOrder(root);
+    cout << endl;
+
+    cout << "kedalaman : " << hitungKedalaman(root) << endl;
+    cout << "jumlah node : " << hitungJumlahNode(root) << endl;
+    cout << "total : " << hitungTotal(root) << endl;
+
+    return 0;
+}
+```
+
+#### Output:
+<img width="336" height="154" alt="image" src="https://github.com/user-attachments/assets/d674a439-de38-4bc1-a60a-670e2192de5f" />
+
+Program ini digunakan untuk mengelola data integer menggunakan struktur Binary Search Tree (BST). Data disimpan secara terurut, dan ditampilkan dalam urutan menaik menggunakan traversal InOrder.
+
+#### Full code Screenshot:
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7b2254c0-19be-4a88-b770-6a5a9eb0e649" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/4c3476cc-6303-44eb-a724-7e5139fed829" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/956f8f2f-7c8d-4cd1-90bc-ae9b29ebc463" />
+
 ## Kesimpulan
 Ringkasan dan interpretasi pandangan kalian dari hasil praktikum dan pembelajaran yang didapat[1]. Modul 10 pada modul ini materi yang di sampaikan itu tentang Binary search Tree, Melalui praktikum Binary Search Tree (BST), mendapatkan pemahaman tentang struktur data tree dan penerapan rekursi dalam proses insert, search, traversal, dan delete. Praktikum ini menunjukkan bahwa BST mempermudah pengelolaan data secara terurut dan efisien. Selain itu, pembelajaran ini meningkatkan pemahaman tentang struktur data non-linear dan pemrograman yang modular.
 
