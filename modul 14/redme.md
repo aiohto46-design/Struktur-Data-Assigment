@@ -364,7 +364,7 @@ main.cpp digunakan untuk menguji program dengan melakukan pembuatan graph, mengh
 
 ## Unguided 
 
-### Soal 1
+## Soal 1
 ### 1. [graph.h]
 
 ```C++
@@ -506,7 +506,7 @@ Program ini membuat graph tidak berarah dengan representasi Adjacency List mengg
 
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/61243aaa-62af-4bcb-b716-a13ffcc24d26" />
 
-### Soal 2
+## Soal 2
 ### 1. [graph.h]
 
 ```C++
@@ -667,7 +667,7 @@ Program ini digunakan untuk mengimplementasikan ADT Graph menggunakan adjacency 
 
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/b86371e9-14ca-472f-88ef-14179cf6392e" />
 
-### Soal 3
+## Soal 3
 ### 1. [graph.h]
 
 ```C++
