@@ -99,7 +99,7 @@ void hapusListAnak(listAnak &LAnak);
 
 #endif
 ```
-multi.h berisi pendefinisian struktur data Multi Linked List serta deklarasi seluruh fungsi yang digunakan, meliputi struktur parent (kategori) dan child (menu makanan).
+multi.h berisi definisi struktur data Multi Linked List serta deklarasi seluruh fungsi yang digunakan, yang mencakup struktur parent (kategori) dan child (menu makanan).
 
 ### 2. [multi.cpp]
 
@@ -604,7 +604,7 @@ void hapusListAnak(listAnak &LAnak) {
     LAnak.first = LAnak.last = NULL;
 }
 ```
-multi.cpp berisi implementasi seluruh fungsi untuk mengelola Multi Linked List, seperti operasi insert, delete, search, update, serta pencetakan data parent dan child.
+multi.cpp berisi implementasi seluruh fungsi untuk pengelolaan Multi Linked List, meliputi operasi insert, delete, search, update, serta proses menampilkan data parent dan child.
 
 ### 3. [main.cpp]
 
@@ -705,26 +705,26 @@ int main() {
     return 0;
 }
 ```
-main.cpp merupakan program utama yang digunakan untuk menguji seluruh fungsi dengan studi kasus menu restoran, mulai dari penambahan data, pencarian, pembaruan, hingga penghapusan data.
+main.cpp merupakan program utama yang digunakan untuk menguji seluruh fungsi dengan studi kasus menu restoran, mulai dari proses penambahan data, pencarian, pembaruan, hingga penghapusan data.
 
 ## Unguided 
-### 1. [circularlist.h]
+### 1. [multi.h]
 
 ```C++
-#ifndef CIRCULARLIST_H
-#define CIRCULARLIST_H
+#ifndef MULTI_H
+#define MULTI_H
 
 #include <iostream>
+#include <string>
 using namespace std;
 
-struct mahasiswa {
+struct infotype {
     string nama;
     string nim;
-    char jenis_kelamin;
+    char jk;
     float ipk;
 };
 
-typedef mahasiswa infotype;
 typedef struct ElmList *address;
 
 struct ElmList {
@@ -737,7 +737,7 @@ struct List {
 };
 
 void createList(List &L);
-address alokasi(infotype x);
+address alokasi(infotype data);
 void dealokasi(address &P);
 
 void insertFirst(List &L, address P);
@@ -752,17 +752,17 @@ void printInfo(List L);
 
 #endif
 ```
-### 2. [circularlist.cpp]
+### 2. [multi.cpp]
 ```C++
-#include "circularlist.h"
+#include "multi.h"
 
 void createList(List &L) {
     L.first = NULL;
 }
 
-address alokasi(infotype x) {
+address alokasi(infotype data) {
     address P = new ElmList;
-    P->info = x;
+    P->info = data;
     P->next = NULL;
     return P;
 }
@@ -777,12 +777,12 @@ void insertFirst(List &L, address P) {
         L.first = P;
         P->next = P;
     } else {
-        address Q = L.first;
-        while (Q->next != L.first) {
-            Q = Q->next;
+        address last = L.first;
+        while (last->next != L.first) {
+            last = last->next;
         }
         P->next = L.first;
-        Q->next = P;
+        last->next = P;
         L.first = P;
     }
 }
@@ -792,11 +792,11 @@ void insertLast(List &L, address P) {
         L.first = P;
         P->next = P;
     } else {
-        address Q = L.first;
-        while (Q->next != L.first) {
-            Q = Q->next;
+        address last = L.first;
+        while (last->next != L.first) {
+            last = last->next;
         }
-        Q->next = P;
+        last->next = P;
         P->next = L.first;
     }
 }
@@ -810,9 +810,9 @@ void insertAfter(List &L, address Prec, address P) {
 
 void deleteFirst(List &L, address &P) {
     if (L.first != NULL) {
-        address Q = L.first;
-        if (Q->next == Q) {
-            P = Q;
+        address firstNode = L.first;
+        if (firstNode->next == firstNode) {
+            P = firstNode;
             L.first = NULL;
         } else {
             address last = L.first;
@@ -829,17 +829,17 @@ void deleteFirst(List &L, address &P) {
 
 void deleteLast(List &L, address &P) {
     if (L.first != NULL) {
-        address Q = L.first;
-        if (Q->next == Q) {
-            P = Q;
+        address curr = L.first;
+        address prev = NULL;
+        if (curr->next == curr) {
+            P = curr;
             L.first = NULL;
         } else {
-            address prev = NULL;
-            while (Q->next != L.first) {
-                prev = Q;
-                Q = Q->next;
+            while (curr->next != L.first) {
+                prev = curr;
+                curr = curr->next;
             }
-            P = Q;
+            P = curr;
             prev->next = L.first;
         }
         P->next = NULL;
@@ -866,9 +866,9 @@ void printInfo(List L) {
         do {
             cout << "Nama : " << P->info.nama << endl;
             cout << "NIM  : " << P->info.nim << endl;
-            cout << "JK   : " << P->info.jenis_kelamin << endl;
+            cout << "L/P  : " << P->info.jk << endl;
             cout << "IPK  : " << P->info.ipk << endl;
-            cout << "---------------------" << endl;
+            cout << endl;
             P = P->next;
         } while (P != L.first);
     }
@@ -877,36 +877,56 @@ void printInfo(List L) {
 ### 3. [main.cpp]
 
 ```C++
-#include "circularlist.h"
-
-address createData(string nama, string nim, char jk, float ipk) {
-    infotype x;
-    x.nama = nama;
-    x.nim = nim;
-    x.jenis_kelamin = jk;
-    x.ipk = ipk;
-    return alokasi(x);
-}
+#include <iostream>
+#include "multi.h"
+using namespace std;
 
 int main() {
-    List L;
-    createList(L);
-
-    address P1, P2;
+    List L, A, B, L2;
+    address P1 = NULL;
+    address P2 = NULL;
     infotype x;
 
-    P1 = createData("Danu", "04", 'L', 4.0);
+    createList(L);
+
+    cout << "coba insert first, last, dan after" << endl << endl;
+
+    x = {"Danu", "04", 'L', 4.0};
+    P1 = alokasi(x);
     insertFirst(L, P1);
 
-    P1 = createData("Fahmi", "06", 'L', 3.45);
+    x = {"Fahmi", "06", 'L', 3.45};
+    P1 = alokasi(x);
     insertLast(L, P1);
 
-    P1 = createData("Bobi", "02", 'L', 3.71);
+    x = {"Bobi", "02", 'L', 3.71};
+    P1 = alokasi(x);
     insertFirst(L, P1);
 
-    x.nim = "06";
+    x = {"Ali", "01", 'L', 3.3};
+    P1 = alokasi(x);
+    insertFirst(L, P1);
+
+    x = {"Gita", "07", 'P', 3.75};
+    P1 = alokasi(x);
+    insertLast(L, P1);
+
+    x.nim = "07";
     P1 = findElm(L, x);
-    P2 = createData("Cindi", "03", 'P', 3.5);
+    x = {"Cindi", "03", 'P', 3.5};
+    P2 = alokasi(x);
+    insertAfter(L, P1, P2);
+
+    x.nim = "02";
+    P1 = findElm(L, x);
+    x = {"Hani", "08", 'P', 3.3};
+    P2 = alokasi(x);
+    insertAfter(L, P1, P2);
+
+    x.nim = "04";
+    P1 = findElm(L, x);
+    x = {"Eli", "05", 'P', 3.4};
+    P2 = alokasi(x);
     insertAfter(L, P1, P2);
 
     printInfo(L);
@@ -916,21 +936,20 @@ int main() {
 ```
 
 #### Output:
-<img width="1532" height="506" alt="image" src="https://github.com/user-attachments/assets/4608a832-1c2c-41e5-a6d8-6e934fed7690" />
+<img width="464" height="705" alt="image" src="https://github.com/user-attachments/assets/cd8d5d3f-3c40-45ee-8fe0-569ead3be048" />
 
 
-
-Program ini dibuat untuk mengelola data mahasiswa menggunakan struktur Multi Linked List berbentuk circular, di mana setiap node menyimpan data mahasiswa dan terhubung membentuk lingkaran. Program mendukung operasi insert, delete, pencarian, dan penampilan data untuk melatih pemahaman pointer dan relasi antar node.
+Program ini dirancang untuk mengelola data mahasiswa menggunakan struktur Multi Linked List berbentuk circular, di mana setiap node menyimpan data mahasiswa dan saling terhubung membentuk suatu lingkaran. Program ini mendukung operasi insert, delete, pencarian, dan penampilan data, sehingga dapat melatih pemahaman mengenai penggunaan pointer serta relasi antar node dalam struktur data.
 
 #### Full code Screenshot:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/bd2cc9f1-c541-4309-a95a-20f57bb7fa42" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/bb72ac6a-f4b9-4cd5-a0ef-e7aa2ae289b1" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/4f4787a6-12f8-49a0-b6ff-aa8acc52073a" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/ddcb20b8-d7c1-4ec8-8e46-2f4043bb9bc3" />
 
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/9fb11713-7f6c-4e43-a880-b6aa06463d39" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/ac39cd7e-19ca-4236-b67b-5e5d97fe23fa" />
 
 ## Kesimpulan
-Ringkasan dan interpretasi pandangan kalian dari hasil praktikum dan pembelajaran yang didapat[1]. Modul 13 pada modul ini materi yang di sampaikan itu tentang MLL, Multi Linked List digunakan untuk mengelola data yang kompleks dan saling berelasi dengan memanfaatkan pointer. Struktur ini membantu memahami alokasi memori, relasi antar data, serta operasi insert, delete, dan search secara lebih mendalam.
+Berdasarkan hasil praktikum dan pembelajaran pada Modul 13, dapat disimpulkan bahwa materi yang dibahas mengenai Multi Linked List (MLL) sangat membantu dalam memahami pengelolaan data yang kompleks dan saling berelasi. MLL memanfaatkan penggunaan pointer untuk menghubungkan data parent dan child, sehingga mahasiswa dapat memahami konsep alokasi memori, hubungan antar data, serta cara kerja struktur data secara lebih nyata. Melalui praktikum ini, pemahaman terhadap operasi dasar seperti insert, delete, dan search menjadi lebih mendalam, karena setiap operasi harus memperhatikan keterkaitan antar node. Selain itu, pembelajaran MLL juga melatih ketelitian dan logika dalam merancang struktur data yang efisien dan terorganisir.
 
 materi ini penting sebagai dasar menuju struktur data lanjutan seperti tree dan graph, serta melatih logika dan ketelitian dalam pemrograman berbasis struktur data.
 
