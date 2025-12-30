@@ -948,10 +948,9 @@ Program ini dirancang untuk mengelola data mahasiswa menggunakan struktur Multi 
 
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/ac39cd7e-19ca-4236-b67b-5e5d97fe23fa" />
 
+
 ## Kesimpulan
 Berdasarkan hasil praktikum dan pembelajaran pada Modul 13, dapat disimpulkan bahwa materi yang dibahas mengenai Multi Linked List (MLL) sangat membantu dalam memahami pengelolaan data yang kompleks dan saling berelasi. MLL memanfaatkan penggunaan pointer untuk menghubungkan data parent dan child, sehingga mahasiswa dapat memahami konsep alokasi memori, hubungan antar data, serta cara kerja struktur data secara lebih nyata. Melalui praktikum ini, pemahaman terhadap operasi dasar seperti insert, delete, dan search menjadi lebih mendalam, karena setiap operasi harus memperhatikan keterkaitan antar node. Selain itu, pembelajaran MLL juga melatih ketelitian dan logika dalam merancang struktur data yang efisien dan terorganisir.
-
-materi ini penting sebagai dasar menuju struktur data lanjutan seperti tree dan graph, serta melatih logika dan ketelitian dalam pemrograman berbasis struktur data.
 
 ## Referensi
 [1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
