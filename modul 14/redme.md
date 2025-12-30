@@ -870,8 +870,10 @@ Program ini digunakan untuk menampilkan hasil penelusuran graph menggunakan meto
 
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/85a5e07b-d8ce-4f3f-ba8c-ba4ecb2d37db" />
 
+
+
 ## Kesimpulan
-Ringkasan dan interpretasi pandangan kalian dari hasil praktikum dan pembelajaran yang didapat[1]. Modul 7 pada modul ini materi yang di sampaikan itu tentang stack, Stack adalah struktur data yang bekerja dengan dengan prinsip LIFO (Last in First Out), jadi node yang terakhir masuk akan keluar paling awal, latihan ini membantu memahami cara kerja stack secara praktis, dengan mengimplementasi kan banyak operasi, jadi dapat memahami bagaimana cara stack itu digunakan untuk mengatur data yang masuk dan kelaur secara teratur serta dapat memecahkan masalah menggunakan LIFO
+Pada praktikum akhir modul 14, saya mempelajari dan mengimplementasikan struktur data Graph menggunakan representasi Adjacency List. Graph merupakan struktur data non-linear yang terdiri dari node (vertex) dan edge yang saling terhubung. Melalui praktikum ini, saya memahami bahwa materi graph membutuhkan latihan dan pemahaman yang baik. Selain itu, saya berhasil menerapkan operasi graph tak berarah serta algoritma penelusuran BFS menggunakan queue dan DFS menggunakan stack.
 
 ## Referensi
 [1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
