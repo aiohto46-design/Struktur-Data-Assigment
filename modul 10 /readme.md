@@ -64,7 +64,7 @@ int height(BinTree tree);
 
 #endif
 ```
-Berisi deklarasi struktur node dan prototype fungsi BST yang digunakan sebagai penghubung antara main.cpp dan bst.cpp.
+Berisi pendefinisian struktur node serta deklarasi prototipe fungsi BST yang berfungsi sebagai penghubung antara main.cpp dan bst.cpp.
 
 ### 2. [bst.cpp]
 
@@ -279,7 +279,8 @@ int size(BinTree tree){ //mengembalikan jumlah semua node
 
 int height(BinTree
 ```
-File implementasi yang berisi logika dan algoritma BST. Pada file ini didefinisikan seluruh fungsi BST, seperti pembuatan tree, penyisipan node secara rekursif, pencarian data, traversal (preorder, inorder, postorder), penghapusan node berdasarkan kasus (leaf, satu child, dua child), serta perhitungan ukuran dan tinggi tree. File ini merepresentasikan inti pemrosesan struktur data BST.
+
+Merupakan file implementasi yang memuat logika dan algoritma Binary Search Tree (BST). Pada file ini didefinisikan seluruh fungsi BST, meliputi pembuatan tree, penyisipan node secara rekursif, pencarian data, traversal (preorder, inorder, dan postorder), penghapusan node berdasarkan kondisi (leaf, satu child, atau dua child), serta perhitungan ukuran dan tinggi tree. File ini menjadi inti dari proses pengolahan struktur data BST.
 
 ### 3. [main.cpp]
 
@@ -434,10 +435,10 @@ int main() {
     return 0;
 }
 ```
-File program utama yang berisi fungsi main() dan menu interaktif. File ini berfungsi sebagai antarmuka pengguna untuk memanggil fungsi-fungsi BST yang didefinisikan di bst.cpp melalui bst.h. Pengguna dapat melakukan insert, delete, search, traversal, dan operasi lainnya melalui menu.
+Merupakan file program utama yang berisi fungsi main() beserta menu interaktif. File ini berperan sebagai antarmuka pengguna untuk memanggil fungsi-fungsi BST yang didefinisikan pada bst.cpp melalui bst.h. Melalui menu yang tersedia, pengguna dapat melakukan operasi seperti insert, delete, search, traversal, serta operasi BST lainnya.
 
 ## Unguided 
-### 1. [doublelist.h]
+### 1. [bstree.h]
 
 ```C++
 #ifndef DOUBLELIST_H
@@ -478,7 +479,7 @@ void deleteAfter(List &L, address Prec);
 
 #endif
 ```
-### 2. [doublelist.cpp]
+### 2. [bstree.cpp]
 ```C++
 #include "doublelist.h"
 
@@ -659,18 +660,9 @@ int main() {
 #### Output:
 <img width="1020" height="920" alt="image" src="https://github.com/user-attachments/assets/ead53e62-fdab-42d5-84a6-fa2a90b31401" />
 
-
-
 Program ini dibuat untuk mengelola data kendaraan menggunakan Doubly Linked List.
 Setiap node menyimpan nomor polisi, warna kendaraan, dan tahun pembuatan.
-Program dapat melakukan:
-- menambah data kendaraan ke belakang list (insertLast)
-- menampilkan seluruh data (printInfo)
-- mengecek apakah nopol sudah terdaftar (findElm)
-- mencari data kendaraan tertentu
-- menghapus data berdasarkan posisi (deleteFirst, deleteLast, deleteAfter)
-- menolak input kendaraan dengan nopol yang sama (duplikasi)
-Program ini mensimulasikan cara kerja struktur data Double Linked List untuk pengolahan data kendaraan secara dinamis.
+
 #### Full code Screenshot:
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/cb3d1f32-c50b-487f-b408-ae51c39b75b6" />
 
